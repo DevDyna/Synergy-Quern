@@ -54,9 +54,9 @@ public class QuernRendering implements BlockEntityRenderer<QuernBE, QuernState> 
             return;
 
         poseStack.pushPose();
-        poseStack.translate(0.5, 0.3125, 0.5);
+        poseStack.translate(0.5, 0.5, 0.5);
         poseStack.mulPose(Axis.YP.rotationDegrees(state.rotation));
-        poseStack.translate(-0.5, -1, -0.5);
+        poseStack.translate(-0.5, -0.5, -0.5);
         state.block.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
         poseStack.popPose();
 
