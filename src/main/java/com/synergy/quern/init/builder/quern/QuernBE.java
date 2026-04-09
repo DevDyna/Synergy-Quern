@@ -14,8 +14,6 @@ import com.synergy.quern.utils.x;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.Containers;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -66,15 +64,15 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
     }
 
     public ItemStack insertItem(ItemStack stack) {
-        var copy = stack.getItem();
-        var remain = stack.getCount();
+        long inserted = 0;
+
         try (Transaction tx = Transaction.openRoot()) {
-            remain = getItemStorage().insert(0, ItemResource.of(stack), stack.getCount(), tx);
+            inserted = getItemStorage().insert(0, ItemResource.of(stack), stack.getCount(), tx);
             tx.commit();
         } catch (Exception e) {
         }
-        return x.item(copy, remain);
 
+        return x.item(stack.getItem(), stack.getCount() - (int) inserted);
     }
 
     public ItemStack extractItem() {
