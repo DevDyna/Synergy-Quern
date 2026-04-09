@@ -82,14 +82,14 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
     }
 
     public ItemStack insertItem(ItemStack stack) {
-        var copy = stack.copy();
-        var remain = copy.getCount();
+        var copy = stack.getItem();
+        var remain = stack.getCount();
         try (Transaction tx = Transaction.openRoot()) {
             remain = getItemStorage().insert(0, ItemResource.of(stack), stack.getCount(), tx);
             tx.commit();
         } catch (Exception e) {
         }
-        return x.item(copy.getItem(), remain);
+        return x.item(copy, remain);
 
     }
 
