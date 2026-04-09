@@ -9,21 +9,15 @@ import java.util.function.Consumer;
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.utils.AdvancementsUtils;
 
-import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
-import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 
-@SuppressWarnings({ "null", "unused" })
 public class DataAdvancement extends AdvancementProvider {
 
         public DataAdvancement(PackOutput output, CompletableFuture<Provider> registries,
@@ -33,6 +27,7 @@ public class DataAdvancement extends AdvancementProvider {
 
         public static class DataAdvancementGenerator implements AdvancementSubProvider {
 
+                @SuppressWarnings("unused")
                 @Override
                 public void generate(Provider p, Consumer<AdvancementHolder> c) {
 

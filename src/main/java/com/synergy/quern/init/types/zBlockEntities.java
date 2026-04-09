@@ -6,7 +6,6 @@ import com.synergy.quern.init.Material;
 import com.synergy.quern.init.builder.quern.QuernBE;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;

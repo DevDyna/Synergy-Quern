@@ -7,14 +7,11 @@ import com.synergy.quern.api.aspect.ItemStorageBlock;
 import com.synergy.quern.api.aspect.NoGuiStorage;
 import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
 import com.synergy.quern.init.types.zBlockEntities;
-import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zHandlers;
 import com.synergy.quern.init.types.zRecipeTypes;
 import com.synergy.quern.utils.x;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
@@ -27,23 +24,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 
-@SuppressWarnings("null")
 public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStorage {
 
-    private float rotation = 0f; // client & server rotation
-    private float speed = 0f; // server authoritative speed
+    private float rotation = 0f;
+    private float speed = 0f;
 
     private int minDelay;
-
-    private static final float MAX_SPEED = 10f; // degrees per tick
-    private static final float ACCEL = 0.1f;
-    private static final float DECEL = 0.1f;
 
     public QuernBE(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
@@ -126,9 +116,6 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
             minDelay = 0;
         }
 
-        // if (cache == null)
-        // return;
-
         var slot = getItemStorage();
 
         if (slot == null)
@@ -185,11 +172,11 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
     public void tickClient() {
 
         if (getBlockState().getValue(BlockStateProperties.ENABLED)) {
-            if (speed < MAX_SPEED)
-                speed += ACCEL;
+            if (speed < 10f)// max speed
+                speed += 0.1f;
         } else {
             if (speed > 0) {
-                speed -= DECEL;
+                speed -= 0.1f;
 
             }
             if (speed < 0)
