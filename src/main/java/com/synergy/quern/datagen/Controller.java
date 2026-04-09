@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.synergy.quern.datagen.client.*;
 import com.synergy.quern.datagen.server.*;
+import com.synergy.quern.datagen.server.DataAdvancement.DataAdvancementGenerator;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.*;
@@ -34,7 +35,10 @@ public class Controller {
 
         // server
 
+        v.addProvider(o -> new DataAdvancement(o, pr, List.of(new DataAdvancementGenerator())));
+
         v.addProvider(o -> new DataBlockTag(o, pr));
+        v.addProvider(o -> new DataItemTag(o, pr));
 
         v.addProvider(o -> new LootTableProvider(o, Set.of(),
                 List.of(
