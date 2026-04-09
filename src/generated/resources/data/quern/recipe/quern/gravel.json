@@ -1,0 +1,8 @@
+{
+  "type": "quern:milling",
+  "frequence": 60,
+  "ingredient": "minecraft:cobblestone",
+  "result": {
+    "id": "minecraft:gravel"
+  }
+}
