@@ -28,7 +28,7 @@ public class MillingBuilder extends BaseRecipeBuilder
     private ItemStackTemplate output;
 
     private MillingBuilder() {
-        this.tick = 60;
+        this.tick = 20;
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
     }
 
