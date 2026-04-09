@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:story/mine_stone",
+  "criteria": {
+    "craft_quern": {
+      "conditions": {
+        "items": [
+          {
+            "items": "quern:quern"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "quern.advancement.branch.quern.desc"
+    },
+    "icon": {
+      "id": "quern:quern"
+    },
+    "title": {
+      "translate": "quern.advancement.branch.quern"
+    }
+  },
+  "requirements": [
+    [
+      "craft_quern"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,9 @@
+{
+  "type": "quern:milling",
+  "frequence": 20,
+  "ingredient": "minecraft:raw_iron",
+  "result": {
+    "count": 2,
+    "id": "quern:iron_dust"
+  }
+}

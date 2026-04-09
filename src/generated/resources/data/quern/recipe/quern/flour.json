@@ -1,0 +1,8 @@
+{
+  "type": "quern:milling",
+  "frequence": 80,
+  "ingredient": "minecraft:wheat",
+  "result": {
+    "id": "quern:flour"
+  }
+}
