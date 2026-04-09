@@ -105,7 +105,7 @@ public interface NoGuiStorage {
         return l.getBlockState(p.relative(d)).isSolidRender();
     }
 
-    private void spawnItemEntity(Level l, BlockPos p, ItemStack s) {
+    default void spawnItemEntity(Level l, BlockPos p, ItemStack s) {
         l.addFreshEntity(new ItemEntity(
                 l,
                 p.getX() + 0.5,
