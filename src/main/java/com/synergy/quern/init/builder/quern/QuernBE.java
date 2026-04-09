@@ -123,13 +123,14 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
                         .getRecipeFor(zRecipeTypes.QUERN.getType(),
                                 new ItemInput(item.toStack()), level);
 
-                var flag = !recipe.isEmpty();
+                if(recipe.isEmpty())
+                return;
 
+                
                 level.setBlockAndUpdate(getBlockPos(),
-                        getBlockState().setValue(BlockStateProperties.ENABLED, flag));
+                        getBlockState().setValue(BlockStateProperties.ENABLED, true));
 
-                if (random.nextInt(100) <= 70)
-                    if (flag) {
+                if (random.nextInt(100) <= 70) {
 
                         if (level.getGameTime() % 15 == 0) {
                             level.playSound(null, getBlockPos(),
