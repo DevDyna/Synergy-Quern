@@ -22,6 +22,8 @@ public class Main {
 
         bus.addListener(Capability::register);
 
+        bus.register(CreativeTabs.class);
+
     }
 
 }
