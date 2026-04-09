@@ -32,7 +32,7 @@ public class QuernRendering implements BlockEntityRenderer<QuernBE, QuernState> 
 
     @Override
     public void extractRenderState(QuernBE blockEntity, QuernState state, float partialTicks, Vec3 cameraPosition,
-            ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
+            ModelFeatureRenderer.CrumblingOverlay breakProgress) {
         BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
 
         if (brb == null)
@@ -56,6 +56,7 @@ public class QuernRendering implements BlockEntityRenderer<QuernBE, QuernState> 
         poseStack.pushPose();
         poseStack.translate(0.5, 0.3125, 0.5);
         poseStack.mulPose(Axis.YP.rotationDegrees(state.rotation));
+        poseStack.translate(-0.5, -1, -0.5);
         state.block.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
         poseStack.popPose();
 
