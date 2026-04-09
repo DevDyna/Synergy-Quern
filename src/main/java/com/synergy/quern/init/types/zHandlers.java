@@ -8,10 +8,8 @@ import com.synergy.quern.api.aspect.ItemStorageBlock;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
-import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries.Keys;
-import net.neoforged.neoforge.transfer.item.ItemStackResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 
 public class zHandlers {
@@ -25,8 +23,7 @@ public class zHandlers {
             Keys.ATTACHMENT_TYPES,
             ID);
 
-
-  public static final Supplier<AttachmentType<ItemStacksResourceHandler>> ITEM_STORAGE = zHandler.register(
+    public static final Supplier<AttachmentType<ItemStacksResourceHandler>> ITEM_STORAGE = zHandler.register(
             "item_storage", () -> AttachmentType.serializable(h -> {
                 if (h instanceof ItemStorageBlock be)
                     return new ItemStacksResourceHandler(be.getSlots());

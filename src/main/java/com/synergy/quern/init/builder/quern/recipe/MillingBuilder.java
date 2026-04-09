@@ -2,29 +2,23 @@ package com.synergy.quern.init.builder.quern.recipe;
 
 import static com.synergy.quern.Main.ID;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
-import javax.annotation.Nullable;
-
 import com.synergy.quern.api.recipe.builders.api.*;
 import com.synergy.quern.utils.x;
 import com.synergy.quern.api.recipe.builders.ItemAttach;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 
-@SuppressWarnings({ "null" })
 public class MillingBuilder extends BaseRecipeBuilder
         implements ItemAttach.Input.NoItemCount<MillingBuilder>,
         ItemAttach.Output.SimpleOutputItem<MillingBuilder> {

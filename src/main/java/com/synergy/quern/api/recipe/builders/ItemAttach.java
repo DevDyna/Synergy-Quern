@@ -15,7 +15,6 @@ import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@SuppressWarnings("unchecked")
 public class ItemAttach {
     public class Input {
 

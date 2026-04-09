@@ -1,8 +1,6 @@
 package com.synergy.quern.api.aspect;
 
-
 import java.util.ArrayList;
-
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,7 +10,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 public interface NoGuiStorage {
 
@@ -89,7 +86,7 @@ public interface NoGuiStorage {
 
         var validDir = new ArrayList<Direction>();
 
-        for (Direction dir :new Direction[]{Direction.NORTH,Direction.SOUTH,Direction.EAST,Direction.WEST})
+        for (Direction dir : new Direction[] { Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST })
             if (!canPlaceItem(level, pos, dir))
                 validDir.add(dir);
 

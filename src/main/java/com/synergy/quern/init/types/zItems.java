@@ -2,9 +2,7 @@ package com.synergy.quern.init.types;
 
 import static com.synergy.quern.Main.ID;
 
-import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class zItems {

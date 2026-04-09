@@ -7,7 +7,6 @@ import com.synergy.quern.init.Material;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.ModContainer;
 
 @Mod(Main.ID)

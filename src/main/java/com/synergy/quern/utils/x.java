@@ -30,7 +30,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import static com.synergy.quern.Main.ID;
 
-@SuppressWarnings("unchecked")
 public class x {
     // Basic Resourcelocation stuff
     // -------------------------------------------------//
