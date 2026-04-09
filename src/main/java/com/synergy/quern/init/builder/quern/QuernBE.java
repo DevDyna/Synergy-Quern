@@ -53,12 +53,6 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
         return getData(zHandlers.ITEM_STORAGE);
     }
 
-    public void drops() {
-        SimpleContainer inv = new SimpleContainer(getSlots());
-        inv.setItem(0, getStackInSlot(0));
-        Containers.dropContents(this.level, this.worldPosition, inv);
-    }
-
     @Override
     protected void saveAdditional(ValueOutput output) {
         getItemStorage().serialize(output);

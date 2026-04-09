@@ -66,13 +66,6 @@ public class QuernBlock extends Block implements EntityBlock {
 
     }
 
-    @Override
-    public void destroy(LevelAccessor level, BlockPos pos, BlockState state) {
-        if (level.getBlockEntity(pos) instanceof QuernBE be)
-            be.drops();
-        super.destroy(level, pos, state);
-    }
-
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s,
