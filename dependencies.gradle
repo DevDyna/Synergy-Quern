@@ -24,7 +24,9 @@ mavenLocal()
 dependencies {
 
     //compat
-    implementation "curse.maven:jei-238222:7884734"
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
     implementation "curse.maven:jade-324717:7886513"
   
 }
