@@ -7,7 +7,6 @@ import com.synergy.quern.init.Material;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.ModContainer;
 
 @Mod(Main.ID)
@@ -19,13 +18,7 @@ public class Main {
     public Main(IEventBus bus, ModContainer c) {
 
         Material.register(bus);
-
-        bus.addListener(Capability::register);
-
-        bus.register(CreativeTabs.class);
-
-        NeoForge.EVENT_BUS.register(BreakEvent.class);
-
+        GameEvents.build(bus, c);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.synergy.quern;
+package com.synergy.quern.common;
 
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zItems;
