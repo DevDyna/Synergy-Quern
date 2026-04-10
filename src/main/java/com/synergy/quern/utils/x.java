@@ -86,8 +86,6 @@ public class x {
         return path(BuiltInRegistries.ITEM, i);
     }
 
- 
-
     public static String path(Fluid i) {
         return path(BuiltInRegistries.FLUID, i);
     }
@@ -205,9 +203,9 @@ public class x {
 
     public static Ingredient itemIngredient(ItemStackTemplate[] i) {
         return x.itemIngredient(Arrays.asList(i).stream()
-        .map(ItemStackTemplate::create)
-        .map(ItemStack::getItem)
-        .toList());
+                .map(ItemStackTemplate::create)
+                .map(ItemStack::getItem)
+                .toList());
     }
 
     public static Ingredient itemIngredient(TagKey<Item> i) {
@@ -221,8 +219,6 @@ public class x {
     public static Ingredient itemIngredient(List<Item> list) {
         return itemIngredient(list.stream().toArray(ItemLike[]::new));
     }
-
-    
 
     public static FluidIngredient fluidIngredient(FluidStack i) {
         return FluidIngredient.of(i);
@@ -399,7 +395,5 @@ public class x {
                 .map(ResourceKey::identifier)
                 .map(BuiltInRegistries.ITEM::get).toList();
     }
-
-    
 
 }
