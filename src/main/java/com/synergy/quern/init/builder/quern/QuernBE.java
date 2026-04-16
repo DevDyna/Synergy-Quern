@@ -76,19 +76,19 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
     }
 
     public ItemStack extractItem() {
-        ItemStack extracted = getStackInSlot(0);
-        var remain = extracted.getCount();
+        var resource = getItemStorage().getResource(0);
+
+        if (resource.isEmpty())
+            return ItemStack.EMPTY;
+
         try (Transaction tx = Transaction.openRoot()) {
-            remain = getItemStorage().extract(0, ItemResource.of(extracted), 0, tx);
+
+            long extracted = getItemStorage()
+                    .extract(0, resource, getItemStorage().getAmountAsInt(0), tx);
             tx.commit();
-        } catch (Exception e) {
+
+            return resource.toStack((int) extracted);
         }
-
-        extracted.setCount(remain);
-
-        if (!extracted.isEmpty())
-            return extracted;
-        return ItemStack.EMPTY;
     }
 
     public float getRotation(float partialTicks) {
@@ -123,35 +123,34 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
                         .getRecipeFor(zRecipeTypes.QUERN.getType(),
                                 new ItemInput(item.toStack()), level);
 
-                if(recipe.isEmpty())
-                return;
+                if (recipe.isEmpty())
+                    return;
 
-                
                 level.setBlockAndUpdate(getBlockPos(),
                         getBlockState().setValue(BlockStateProperties.ENABLED, true));
 
                 if (random.nextInt(100) <= 70) {
 
-                        if (level.getGameTime() % 15 == 0) {
-                            level.playSound(null, getBlockPos(),
-                                    SoundEvents.GRINDSTONE_USE,
-                                    SoundSource.BLOCKS, 0.25F * (random.nextInt(100) <= 50 ? 1f : 0.75f), 1);
-                        }
-
-                        if (minDelay >= recipe.get().value().getTime()
-                                && minDelay % recipe.get().value().getTime() == 0) {
-                            var output = recipe.get().value().getOutput();
-                            dropInWorldResult(output.create(), level, getBlockPos());
-
-                            slot.extract(0, slot.getResource(0), 1, tx);
-                            tx.commit();
-
-                            level.playSound(null, getBlockPos(),
-                                    SoundEvents.ITEM_FRAME_REMOVE_ITEM,
-                                    SoundSource.BLOCKS, 0.5F * (random.nextInt(100) <= 50 ? 1f : 0.75f), 1);
-                            setChanged(level, getBlockPos(), getBlockState());
-                        }
+                    if (level.getGameTime() % 15 == 0) {
+                        level.playSound(null, getBlockPos(),
+                                SoundEvents.GRINDSTONE_USE,
+                                SoundSource.BLOCKS, 0.25F * (random.nextInt(100) <= 50 ? 1f : 0.75f), 1);
                     }
+
+                    if (minDelay >= recipe.get().value().getTime()
+                            && minDelay % recipe.get().value().getTime() == 0) {
+                        var output = recipe.get().value().getOutput();
+                        dropInWorldResult(output.create(), level, getBlockPos());
+
+                        slot.extract(0, slot.getResource(0), 1, tx);
+                        tx.commit();
+
+                        level.playSound(null, getBlockPos(),
+                                SoundEvents.ITEM_FRAME_REMOVE_ITEM,
+                                SoundSource.BLOCKS, 0.5F * (random.nextInt(100) <= 50 ? 1f : 0.75f), 1);
+                        setChanged(level, getBlockPos(), getBlockState());
+                    }
+                }
             } catch (Exception e) {
 
             }

@@ -40,11 +40,12 @@ public interface NoGuiStorage {
                     player.swing(hand);
                     // If empty hand -> extract one item
                     ItemStack extracted = storage.extractItem();
-                    if (!extracted.isEmpty() && !level.isClientSide()) {
+
+                    if (!extracted.isEmpty()) {
                         player.addItem(extracted);
                         // ItemHandlerHelper.giveItemToPlayer(player, extracted);
                         setChanged();
-                        return InteractionResult.CONSUME;
+                        return InteractionResult.SUCCESS_SERVER;
                     }
                 }
             }
