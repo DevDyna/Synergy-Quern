@@ -26,6 +26,8 @@ public class DataLang extends LanguageProvider {
 
                 advKey("quern", "It spin!", "Craft a quern to process resources into dusts");
 
+                add(ID + ".jei.quern", "Milling Recipes");
+
         }
 
         private String named(DeferredHolder<?, ?> b) {
