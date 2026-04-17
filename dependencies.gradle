@@ -23,10 +23,15 @@ mavenLocal()
 
 dependencies {
 
+    //lib
+    implementation "curse.maven:cakesticklib-1516173:${cakesticklib}"
+
     //compat
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
     implementation "curse.maven:jade-324717:7886513"
+
+   
   
 }
