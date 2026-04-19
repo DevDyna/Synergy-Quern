@@ -109,7 +109,7 @@ public class DataRecipe extends RecipeProvider {
                 }
 
                 @Override
-                protected net.minecraft.data.recipes.RecipeProvider createRecipeProvider(
+                protected RecipeProvider createRecipeProvider(
                                 HolderLookup.Provider lookupProvider,
                                 RecipeOutput output) {
                         return new DataRecipe(lookupProvider, output);
