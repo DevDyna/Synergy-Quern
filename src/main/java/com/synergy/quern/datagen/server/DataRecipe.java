@@ -97,7 +97,7 @@ public class DataRecipe extends RecipeProvider {
                                 output);
                 MillingBuilder.simple(x.itemIngredient(ItemTags.LOGS), zLibrary.zItems.SAWDUST.get(), 2, output);
                 MillingBuilder.simple(Items.QUARTZ, zLibrary.zItems.QUARTZ_DUST.get(), output);
-                MillingBuilder.simple(Items.LAPIS_LAZULI, zLibrary.zItems.QUARTZ_DUST.get(), output);
+                MillingBuilder.simple(Items.LAPIS_LAZULI, zLibrary.zItems.LAPIS_DUST.get(), output);
                 MillingBuilder.simple(Items.EMERALD, zLibrary.zItems.EMERALD_DUST.get(), output);
                 MillingBuilder.simple(Items.DIAMOND, zLibrary.zItems.DIAMOND_DUST.get(), output);
 
