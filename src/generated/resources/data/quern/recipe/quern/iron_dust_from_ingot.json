@@ -3,6 +3,6 @@
   "frequence": 20,
   "ingredient": "minecraft:iron_ingot",
   "result": {
-    "id": "quern:iron_dust"
+    "id": "cakesticklib:iron_dust"
   }
 }

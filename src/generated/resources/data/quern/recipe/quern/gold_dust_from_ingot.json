@@ -3,6 +3,6 @@
   "frequence": 20,
   "ingredient": "minecraft:gold_ingot",
   "result": {
-    "id": "quern:gold_dust"
+    "id": "cakesticklib:gold_dust"
   }
 }

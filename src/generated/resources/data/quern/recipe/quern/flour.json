@@ -3,6 +3,6 @@
   "frequence": 80,
   "ingredient": "minecraft:wheat",
   "result": {
-    "id": "quern:flour"
+    "id": "cakesticklib:flour"
   }
 }
