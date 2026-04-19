@@ -4,6 +4,7 @@ import static com.synergy.quern.Main.ID;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.devdyna.cakesticklib.setup.registry.zLibrary;
 import com.synergy.quern.init.builder.quern.recipe.MillingBuilder;
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zItems;
@@ -12,10 +13,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.CookingBookCategory;
-import net.minecraft.world.item.crafting.Ingredient;
 
 public class DataRecipe extends RecipeProvider {
 
@@ -69,66 +67,47 @@ public class DataRecipe extends RecipeProvider {
 
                 MillingBuilder.of()
                                 .input(Items.RAW_COPPER)
-                                .output(zItems.DUST_COPPER.get(), 2)
+                                .output(zLibrary.zItems.COPPER_DUST.get(), 2)
                                 .unlockedBy()
-                                .save(output,"_from_raw");
+                                .save(output, "_from_raw");
 
                 MillingBuilder.of()
                                 .input(Items.RAW_GOLD)
-                                .output(zItems.DUST_GOLD.get(), 2)
+                                .output(zLibrary.zItems.GOLD_DUST.get(), 2)
                                 .unlockedBy()
-                                .save(output,"_from_raw");
+                                .save(output, "_from_raw");
 
                 MillingBuilder.of()
                                 .input(Items.RAW_IRON)
-                                .output(zItems.DUST_IRON.get(), 2)
+                                .output(zLibrary.zItems.IRON_DUST.get(), 2)
                                 .unlockedBy()
-                                .save(output,"_from_raw");
+                                .save(output, "_from_raw");
 
                 MillingBuilder.of()
                                 .input(Items.COPPER_INGOT)
-                                .output(zItems.DUST_COPPER.get())
+                                .output(zLibrary.zItems.COPPER_DUST.get())
                                 .unlockedBy()
-                                .save(output,"_from_ingot");
+                                .save(output, "_from_ingot");
 
                 MillingBuilder.of()
                                 .input(Items.GOLD_INGOT)
-                                .output(zItems.DUST_GOLD.get())
+                                .output(zLibrary.zItems.GOLD_DUST.get())
                                 .unlockedBy()
-                                .save(output,"_from_ingot");
+                                .save(output, "_from_ingot");
 
                 MillingBuilder.of()
                                 .input(Items.IRON_INGOT)
-                                .output(zItems.DUST_IRON.get())
+                                .output(zLibrary.zItems.IRON_DUST.get())
                                 .unlockedBy()
-                                .save(output,"_from_ingot");
+                                .save(output, "_from_ingot");
 
                 MillingBuilder.of()
                                 .delay(80)
                                 .input(Items.WHEAT)
-                                .output(zItems.FLOUR.get())
+                                .output(zLibrary.zItems.FLOUR.get())
                                 .unlockedBy()
                                 .save(output);
 
-                cooking(output, zItems.FLOUR.get(), Items.BREAD);
-
-                cooking(output, zItems.DUST_COPPER.get(), Items.COPPER_INGOT);
-                cooking(output, zItems.DUST_GOLD.get(), Items.GOLD_INGOT);
-                cooking(output, zItems.DUST_IRON.get(), Items.IRON_INGOT);
-
-        }
-
-        private void cooking(RecipeOutput c, Item input, Item output) {
-                SimpleCookingRecipeBuilder
-                                .smelting(Ingredient.of(input),
-                                                RecipeCategory.BUILDING_BLOCKS,
-                                                CookingBookCategory.FOOD, output, 0.1F, 200)
-                                .unlockedBy(getHasName(input),
-                                                has(input))
-                                .save(c, ID + ":"
-                                                + getConversionRecipeName(
-                                                                output,
-                                                                input));
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {

@@ -4,6 +4,7 @@ import static com.synergy.quern.Main.ID;
 
 import com.devdyna.cakesticklib.api.compat.jei.BaseRecipeCategory;
 import com.devdyna.cakesticklib.api.primitive.Size;
+import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zRecipeTypes;
@@ -13,6 +14,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.types.IRecipeType;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.ItemLike;
 
@@ -46,8 +48,8 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     }
 
     @Override
-    public String setBackGround() {
-        return "textures/gui/jei/simple.png";
+    public Identifier setBackGround() {
+        return x.rl(ID,"textures/gui/jei/simple.png");
     }
 
     @Override

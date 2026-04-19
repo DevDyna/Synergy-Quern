@@ -21,10 +21,4 @@ public class zItems {
 
     public static final DeferredItem<Item> WOODEN_GEAR = zIngredients.registerSimpleItem("wooden_gear");
   
-    public static final DeferredItem<Item> DUST_IRON = zIngredients.registerSimpleItem("iron_dust");
-    public static final DeferredItem<Item> DUST_COPPER = zIngredients.registerSimpleItem("copper_dust");
-    public static final DeferredItem<Item> DUST_GOLD = zIngredients.registerSimpleItem("gold_dust");
-  
-    public static final DeferredItem<Item> FLOUR = zIngredients.registerSimpleItem("flour");
-
 }

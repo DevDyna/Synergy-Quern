@@ -38,7 +38,7 @@ public class Controller {
         v.addProvider(o -> new DataAdvancement(o, pr, List.of(new DataAdvancementGenerator())));
 
         v.addProvider(o -> new DataBlockTag(o, pr));
-        v.addProvider(o -> new DataItemTag(o, pr));
+        // v.addProvider(o -> new DataItemTag(o, pr));
 
         v.addProvider(o -> new LootTableProvider(o, Set.of(),
                 List.of(
