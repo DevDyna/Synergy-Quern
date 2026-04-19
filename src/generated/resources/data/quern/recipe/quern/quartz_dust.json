@@ -1,0 +1,8 @@
+{
+  "type": "quern:milling",
+  "frequence": 20,
+  "ingredient": "minecraft:quartz",
+  "result": {
+    "id": "cakesticklib:quartz_dust"
+  }
+}

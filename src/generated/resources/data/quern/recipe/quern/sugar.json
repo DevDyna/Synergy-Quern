@@ -1,0 +1,9 @@
+{
+  "type": "quern:milling",
+  "frequence": 20,
+  "ingredient": "minecraft:sugar_cane",
+  "result": {
+    "count": 2,
+    "id": "minecraft:sugar"
+  }
+}
