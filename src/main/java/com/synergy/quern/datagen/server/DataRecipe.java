@@ -41,29 +41,10 @@ public class DataRecipe extends RecipeProvider {
                                 .unlockedBy(ID, has(Items.STICK))
                                 .save(output);
 
-                MillingBuilder.of()
-                                .input(Items.COBBLESTONE)
-                                .output(Items.GRAVEL)
-                                .unlockedBy()
-                                .save(output);
-
-                MillingBuilder.of()
-                                .input(Items.GRAVEL)
-                                .output(Items.SAND)
-                                .unlockedBy()
-                                .save(output);
-
-                MillingBuilder.of()
-                                .input(Items.STONE)
-                                .output(Items.COBBLESTONE)
-                                .unlockedBy()
-                                .save(output);
-
-                MillingBuilder.of()
-                                .input(Items.DEEPSLATE)
-                                .output(Items.COBBLED_DEEPSLATE)
-                                .unlockedBy()
-                                .save(output);
+                MillingBuilder.simple(Items.COBBLESTONE, Items.GRAVEL, output);
+                MillingBuilder.simple(Items.GRAVEL, Items.SAND, output);
+                MillingBuilder.simple(Items.STONE, Items.COBBLESTONE, output);
+                MillingBuilder.simple(Items.DEEPSLATE, Items.COBBLED_DEEPSLATE, output);
 
                 MillingBuilder.of()
                                 .input(Items.RAW_COPPER)
@@ -102,8 +83,8 @@ public class DataRecipe extends RecipeProvider {
                                 .save(output, "_from_ingot");
 
                 MillingBuilder.of()
-                                .delay(80)
                                 .input(Items.WHEAT)
+                                .delay(80)
                                 .output(zLibrary.zItems.FLOUR.get())
                                 .unlockedBy()
                                 .save(output);
