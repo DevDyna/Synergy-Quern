@@ -4,6 +4,7 @@ import static com.synergy.quern.Main.ID;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.zLibrary;
 import com.synergy.quern.init.builder.quern.recipe.MillingBuilder;
 import com.synergy.quern.init.types.zBlocks;
@@ -13,6 +14,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 
 public class DataRecipe extends RecipeProvider {
@@ -88,6 +90,16 @@ public class DataRecipe extends RecipeProvider {
                                 .output(zLibrary.zItems.FLOUR.get())
                                 .unlockedBy()
                                 .save(output);
+
+                MillingBuilder.simple(Items.SUGAR_CANE, Items.SUGAR, 2, output);
+
+                MillingBuilder.simple(x.itemIngredient(zLibrary.zItemTags.COAL_LIKE), zLibrary.zItems.CARBON_DUST.get(),
+                                output);
+                MillingBuilder.simple(x.itemIngredient(ItemTags.LOGS), zLibrary.zItems.SAWDUST.get(), 2, output);
+                MillingBuilder.simple(Items.QUARTZ, zLibrary.zItems.QUARTZ_DUST.get(), output);
+                MillingBuilder.simple(Items.LAPIS_LAZULI, zLibrary.zItems.QUARTZ_DUST.get(), output);
+                MillingBuilder.simple(Items.EMERALD, zLibrary.zItems.EMERALD_DUST.get(), output);
+                MillingBuilder.simple(Items.DIAMOND, zLibrary.zItems.DIAMOND_DUST.get(), output);
 
         }
 
