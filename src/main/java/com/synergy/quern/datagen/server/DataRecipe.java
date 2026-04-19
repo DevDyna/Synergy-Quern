@@ -117,7 +117,7 @@ public class DataRecipe extends RecipeProvider {
 
                 @Override
                 public String getName() {
-                        return "Synergy";
+                        return "Synergy Quern";
                 }
         }
 
