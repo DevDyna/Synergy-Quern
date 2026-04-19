@@ -2,7 +2,6 @@ package com.synergy.quern.init.builder.quern;
 
 import javax.annotation.Nullable;
 
-import com.synergy.quern.init.types.zBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -27,10 +26,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class QuernBlock extends Block implements EntityBlock {
 
-    public QuernBlock() {
-        super(Properties.of().strength(0.4f).destroyTime(0.4f).sound(SoundType.STONE)
-                .mapColor(MapColor.STONE)
-                .setId(zBlocks.QUERN.getKey()));
+    public QuernBlock(Properties p) {
+        super(p.strength(0.4f)
+                .destroyTime(0.4f)
+                .sound(SoundType.STONE)
+                .mapColor(MapColor.STONE));
     }
 
     @Override

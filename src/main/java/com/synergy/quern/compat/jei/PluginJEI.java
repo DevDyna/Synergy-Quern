@@ -1,12 +1,14 @@
 package com.synergy.quern.compat.jei;
 
+import static com.synergy.quern.Main.ID;
+
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.quern.Client;
 import com.synergy.quern.compat.jei.categories.QuernCategory;
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zRecipeTypes;
-import com.synergy.quern.utils.x;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -24,7 +26,7 @@ public class PluginJEI implements IModPlugin {
 
     @Override
     public Identifier getPluginUid() {
-        return x.rl("jei_plugin");
+        return x.rl(ID,"jei_plugin");
     }
 
     @Override

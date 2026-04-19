@@ -1,13 +1,14 @@
 package com.synergy.quern.init.builder.quern.recipe;
 
+import static com.synergy.quern.Main.ID;
+
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.synergy.quern.api.BaseRecipeType;
 import com.synergy.quern.api.ItemInput;
-import com.synergy.quern.api.RecipeRegister;
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zRecipeTypes;
 
@@ -19,8 +20,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 
 @SuppressWarnings("null")
 public class MillingRecipe extends BaseRecipeType<ItemInput> {
@@ -66,8 +69,18 @@ public class MillingRecipe extends BaseRecipeType<ItemInput> {
     }
 
     @Override
-    public RecipeRegister<? extends BaseRecipeType<ItemInput>> getRecipe() {
-        return zRecipeTypes.QUERN;
+    public RecipeType<? extends Recipe<ItemInput>> getType() {
+        return zRecipeTypes.QUERN.getType();
+    }
+
+    @Override
+    public RecipeSerializer<? extends Recipe<ItemInput>> getSerializer() {
+        return zRecipeTypes.QUERN.getSerializer();
+    }
+
+    @Override
+    public String group() {
+        return ID;
     }
 
     @Override
@@ -91,5 +104,7 @@ public class MillingRecipe extends BaseRecipeType<ItemInput> {
                     ItemStackTemplate.STREAM_CODEC, MillingRecipe::getOutput,
                     ByteBufCodecs.INT, MillingRecipe::getTime,
                     MillingRecipe::new);
+
+  
 
 }

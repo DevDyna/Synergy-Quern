@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
+import com.devdyna.cakesticklib.api.datagen.AdvancementsUtils;
 import com.synergy.quern.init.types.zBlocks;
-import com.synergy.quern.utils.AdvancementsUtils;
 
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
@@ -33,7 +33,7 @@ public class DataAdvancement extends AdvancementProvider {
 
                         var quern = AdvancementsUtils
                                         .getExistingParent("minecraft:story/mine_stone", zBlocks.QUERN.get(),
-                                                        "quern",
+                                                        ID,"quern",
                                                         AdvancementType.TASK, true, true, false)
                                         .addCriterion("craft_quern",
                                                         InventoryChangeTrigger.TriggerInstance

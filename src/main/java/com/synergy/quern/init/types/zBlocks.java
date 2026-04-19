@@ -2,9 +2,10 @@ package com.synergy.quern.init.types;
 
 import static com.synergy.quern.Main.ID;
 
-import com.synergy.quern.init.Material;
+import java.util.function.Function;
 import com.synergy.quern.init.builder.quern.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -19,10 +20,17 @@ public class zBlocks {
     public static final DeferredRegister.Blocks zBlock = DeferredRegister.createBlocks(ID);
     public static final DeferredRegister.Blocks zBlockItem = DeferredRegister.createBlocks(ID);
 
-    public static final DeferredHolder<Block, Block> QUERN = Material.registerItemBlock("quern",
-            () -> new QuernBlock());
+    public static final DeferredHolder<Block, Block> QUERN = registerItemBlock("quern",
+            p -> new QuernBlock(p));
 
-    public static final DeferredHolder<Block, Block> RENDER = zBlock.register("render",
-            () -> new RenderBlock());
+    public static final DeferredHolder<Block, Block> RENDER = zBlock.registerSimpleBlock("render",
+            p -> p.noLootTable());
+
+    public static DeferredHolder<Block, Block> registerItemBlock(String blockname,
+            Function<BlockBehaviour.Properties, ? extends Block> sup) {
+        DeferredHolder<Block, Block> block = zBlockItem.registerBlock(blockname, sup);
+        zItems.zBlockItem.registerSimpleBlockItem(block);
+        return block;
+    }
 
 }

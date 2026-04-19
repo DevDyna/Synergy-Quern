@@ -2,14 +2,14 @@ package com.synergy.quern.init.builder.quern;
 
 import java.util.Optional;
 
+import com.devdyna.cakesticklib.api.aspect.logic.*;
+import com.devdyna.cakesticklib.api.utils.x;
+import com.devdyna.cakesticklib.setup.registry.types.zHandlers;
 import com.synergy.quern.api.ItemInput;
-import com.synergy.quern.api.aspect.ItemStorageBlock;
-import com.synergy.quern.api.aspect.NoGuiStorage;
+
 import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
 import com.synergy.quern.init.types.zBlockEntities;
-import com.synergy.quern.init.types.zHandlers;
 import com.synergy.quern.init.types.zRecipeTypes;
-import com.synergy.quern.utils.x;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;

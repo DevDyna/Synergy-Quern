@@ -1,12 +1,12 @@
 package com.synergy.quern.compat.jei.categories;
 
+import static com.synergy.quern.Main.ID;
 
-
-import com.synergy.quern.compat.jei.api.BaseRecipeCategory;
+import com.devdyna.cakesticklib.api.compat.jei.BaseRecipeCategory;
+import com.devdyna.cakesticklib.api.primitive.Size;
 import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zRecipeTypes;
-import com.synergy.quern.utils.Size;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -31,8 +31,8 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     }
 
     @Override
-    public String getTitleKey() {
-        return "quern";
+    public String getTraslationKey() {
+        return ID + ".jei.quern";
     }
 
     @Override
@@ -54,10 +54,10 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     public void setRecipe(IRecipeLayoutBuilder builder, MillingRecipe recipe, IFocusGroup focuses) {
 
         builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
-        .add(recipe.getInput());
+                .add(recipe.getInput());
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 2)
-        .add(recipe.getOutput().create());
+                .add(recipe.getOutput().create());
     }
 
     @Override

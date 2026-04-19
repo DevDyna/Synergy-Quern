@@ -3,9 +3,9 @@ package com.synergy.quern.init.builder.quern.recipe;
 import static com.synergy.quern.Main.ID;
 
 import java.util.LinkedHashMap;
-import com.synergy.quern.api.recipe.builders.api.*;
-import com.synergy.quern.utils.x;
-import com.synergy.quern.api.recipe.builders.ItemAttach;
+
+import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
+import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
@@ -78,7 +78,7 @@ public class MillingBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl("quern/" + output.item().getKey().identifier().getPath()
+        return x.rl(ID,"quern/" + output.item().getKey().identifier().getPath()
                 + extra);
     }
 }
