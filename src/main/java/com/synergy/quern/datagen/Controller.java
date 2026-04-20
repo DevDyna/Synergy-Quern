@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
+import com.devdyna.cakesticklib.CakeStickLib;
 import com.synergy.quern.datagen.client.*;
 import com.synergy.quern.datagen.server.*;
 import com.synergy.quern.datagen.server.DataAdvancement.DataAdvancementGenerator;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.*;
-import net.minecraft.data.DataGenerator.PackGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -23,30 +24,36 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 public class Controller {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client e) {
-        DataGenerator g = e.getGenerator();
-        CompletableFuture<HolderLookup.Provider> pr = e.getLookupProvider();
-        PackGenerator v = g.getVanillaPack(true);
+        DataGenerator gen = e.getGenerator();
+        CompletableFuture<HolderLookup.Provider> provider = e.getLookupProvider();
+        // PackGenerator v = gen.getVanillaPack(true);
+        var output = gen.getPackOutput();
+
+        e.createDatapackRegistryObjects(new RegistrySetBuilder(), Set.of("minecraft", ID, CakeStickLib.MODULE_ID));
 
         // client
 
         // providerGen(e, g, new DataBlockModelState(po, f));
         // providerGen(e, g, new DataItemModel(po, f));
-        v.addProvider(DataLang::new);
+        e.addProvider(new DataLang(output));
 
         // server
 
-        v.addProvider(o -> new DataAdvancement(o, pr, List.of(new DataAdvancementGenerator())));
+        e.addProvider(new DataAdvancement(output, provider, List.of(new DataAdvancementGenerator())));
 
-        v.addProvider(o -> new DataBlockTag(o, pr));
+        e.addProvider(new DataBlockTag(output, provider));
         // v.addProvider(o -> new DataItemTag(o, pr));
 
-        v.addProvider(o -> new LootTableProvider(o, Set.of(),
+        e.addProvider(new LootTableProvider(output, Set.of(),
                 List.of(
                         new LootTableProvider.SubProviderEntry(DataLootBlock::new, LootContextParamSets.BLOCK)),
-                pr));
+                provider));
 
-        v.addProvider(o -> new DataRecipe.RecipeRunner(o, pr));
+        // v.addProvider(o -> new DataRecipe.RecipeRunner(o, pr));
 
+        e.createProvider(DataRecipe.RecipeRunner::new);
+
+        
     }
 
 }
