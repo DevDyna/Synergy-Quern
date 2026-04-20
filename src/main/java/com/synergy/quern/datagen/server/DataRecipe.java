@@ -44,15 +44,15 @@ public class DataRecipe extends RecipeProvider {
                                 .save(output);
 
                 MillingBuilder.of()
-                                .input(Items.COBBLESTONE)
+                                .input(Tags.Items.COBBLESTONES_NORMAL, registries)
                                 .output(Items.GRAVEL)
-                                .unlockedBy()
+                                .unlockedBy("has_cobblestone", has(Tags.Items.COBBLESTONES_NORMAL))
                                 .save(output);
 
                 MillingBuilder.of()
-                                .input(Items.GRAVEL)
+                                .input(Tags.Items.GRAVELS, registries)
                                 .output(Items.SAND)
-                                .unlockedBy()
+                                .unlockedBy("has_gravel", has(Tags.Items.GRAVELS))
                                 .save(output);
 
                 MillingBuilder.of()
@@ -68,57 +68,58 @@ public class DataRecipe extends RecipeProvider {
                                 .save(output);
 
                 MillingBuilder.of()
-                                .input(Items.RAW_COPPER)
+                                .input(Tags.Items.RAW_MATERIALS_COPPER,registries)
                                 .output(zLibrary.zItems.COPPER_DUST.get(), 2)
-                                .unlockedBy()
+                                .unlockedBy("has_raw_copper", has(Tags.Items.RAW_MATERIALS_COPPER))
                                 .save(output, "_from_raw");
 
                 MillingBuilder.of()
-                                .input(Items.RAW_GOLD)
+                                .input(Tags.Items.RAW_MATERIALS_GOLD,registries)
                                 .output(zLibrary.zItems.GOLD_DUST.get(), 2)
-                                .unlockedBy()
+                                .unlockedBy("has_raw_gold", has(Tags.Items.RAW_MATERIALS_GOLD))
                                 .save(output, "_from_raw");
 
                 MillingBuilder.of()
-                                .input(Items.RAW_IRON)
+                                .input(Tags.Items.RAW_MATERIALS_IRON,registries)
                                 .output(zLibrary.zItems.IRON_DUST.get(), 2)
-                                .unlockedBy()
+                                .unlockedBy("has_raw_iron", has(Tags.Items.RAW_MATERIALS_IRON))
                                 .save(output, "_from_raw");
 
                 MillingBuilder.of()
-                                .input(Items.COPPER_INGOT)
+                                .input(Tags.Items.INGOTS_COPPER,registries)
                                 .output(zLibrary.zItems.COPPER_DUST.get())
-                                .unlockedBy()
+                                .unlockedBy("has_copper_ingot", has(Tags.Items.INGOTS_COPPER))
                                 .save(output, "_from_ingot");
 
                 MillingBuilder.of()
-                                .input(Items.GOLD_INGOT)
+                                .input(Tags.Items.INGOTS_GOLD,registries)
                                 .output(zLibrary.zItems.GOLD_DUST.get())
-                                .unlockedBy()
+                                .unlockedBy("has_gold_ingot", has(Tags.Items.INGOTS_GOLD))
                                 .save(output, "_from_ingot");
 
                 MillingBuilder.of()
-                                .input(Items.IRON_INGOT)
+                                .input(Tags.Items.INGOTS_IRON,registries)
                                 .output(zLibrary.zItems.IRON_DUST.get())
-                                .unlockedBy()
+                                .unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
                                 .save(output, "_from_ingot");
 
                 MillingBuilder.of()
-                                .input(Items.WHEAT)
+                                .input(Tags.Items.CROPS_WHEAT, registries)
                                 .delay(80)
                                 .output(zLibrary.zItems.FLOUR.get())
-                                .unlockedBy()
+                                .unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT))
                                 .save(output);
 
                 MillingBuilder.of()
-                                .input(zLibrary.zItemTags.COAL_LIKE, registries)
+                                .input(ItemTags.COALS, registries)
                                 .output(zLibrary.zItems.CARBON_DUST.get())
-                                .unlockedBy("has_coal", has(zLibrary.zItemTags.COAL_LIKE))
+                                .unlockedBy("has_coal", has(ItemTags.COALS))
                                 .save(output);
+
                 MillingBuilder.of()
-                                .input(Items.SUGAR_CANE)
+                                .input(Tags.Items.CROPS_SUGAR_CANE, registries)
                                 .output(Items.SUGAR, 2)
-                                .unlockedBy()
+                                .unlockedBy("has_sugar_cane", has(Tags.Items.CROPS_SUGAR_CANE))
                                 .save(output);
 
                 MillingBuilder.of()
@@ -155,9 +156,9 @@ public class DataRecipe extends RecipeProvider {
                                 .save(output);
 
                 MillingBuilder.of()
-                                .input(Tags.Items.GEMS_PRISMARINE, registries)
-                                .output(Items.PRISMARINE_SHARD)
-                                .unlockedBy("has_prismarine", has(Tags.Items.GEMS_PRISMARINE))
+                                .input(Items.PRISMARINE_SHARD)
+                                .output(Items.PRISMARINE_CRYSTALS)
+                                .unlockedBy("has_prismarine", has(Items.PRISMARINE_CRYSTALS))
                                 .save(output);
 
                 MillingBuilder.of()
