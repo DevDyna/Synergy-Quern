@@ -100,7 +100,7 @@ public class DataRecipe extends RecipeProvider {
                                 .save(output);
 
                 MillingBuilder.of()
-                                .input(ItemTags.LOGS)
+                                .input(ItemTags.LOGS,registries)
                                 .output(zLibrary.zItems.SAWDUST.get(), 2)
                                 .unlockedBy("has_log", has(ItemTags.LOGS))
                                 .save(output);
