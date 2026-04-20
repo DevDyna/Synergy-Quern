@@ -8,6 +8,13 @@
       "trigger": "minecraft:recipe_unlocked"
     },
     "quern": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:wheat"
+          }
+        ]
+      },
       "trigger": "minecraft:inventory_changed"
     }
   },

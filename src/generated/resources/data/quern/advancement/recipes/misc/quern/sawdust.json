@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "quern:quern/emerald_dust"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "quern": {
+    "has_log": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:emerald"
+            "items": "#minecraft:logs"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "quern:quern/sawdust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "quern"
+      "has_log"
     ]
   ],
   "rewards": {
     "recipes": [
-      "quern:quern/emerald_dust"
+      "quern:quern/sawdust"
     ]
   }
 }

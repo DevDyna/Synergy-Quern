@@ -8,6 +8,13 @@
       "trigger": "minecraft:recipe_unlocked"
     },
     "quern": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:iron_ingot"
+          }
+        ]
+      },
       "trigger": "minecraft:inventory_changed"
     }
   },

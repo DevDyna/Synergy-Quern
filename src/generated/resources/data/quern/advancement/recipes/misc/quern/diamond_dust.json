@@ -8,6 +8,13 @@
       "trigger": "minecraft:recipe_unlocked"
     },
     "quern": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:diamond"
+          }
+        ]
+      },
       "trigger": "minecraft:inventory_changed"
     }
   },

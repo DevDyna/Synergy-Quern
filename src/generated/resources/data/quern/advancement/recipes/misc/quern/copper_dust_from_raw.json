@@ -8,6 +8,13 @@
       "trigger": "minecraft:recipe_unlocked"
     },
     "quern": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:raw_copper"
+          }
+        ]
+      },
       "trigger": "minecraft:inventory_changed"
     }
   },

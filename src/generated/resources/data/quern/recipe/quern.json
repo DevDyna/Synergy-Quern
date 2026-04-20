@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "S": "minecraft:stone_slab",
-    "T": "minecraft:stick",
+    "T": "#c:rods/wooden",
     "W": "quern:wooden_gear"
   },
   "pattern": [
