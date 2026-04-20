@@ -1,7 +1,7 @@
 {
   "type": "quern:milling",
   "frequence": 20,
-  "ingredient": "minecraft:diamond",
+  "ingredient": "#c:gems/diamond",
   "result": {
     "id": "cakesticklib:diamond_dust"
   }

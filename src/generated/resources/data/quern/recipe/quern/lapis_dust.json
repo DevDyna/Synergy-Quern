@@ -1,7 +1,7 @@
 {
   "type": "quern:milling",
   "frequence": 20,
-  "ingredient": "minecraft:lapis_lazuli",
+  "ingredient": "#c:gems/lapis",
   "result": {
     "id": "cakesticklib:lapis_dust"
   }

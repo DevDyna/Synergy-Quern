@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_diamond": {
+    "has_amethyst": {
       "conditions": {
         "items": [
           {
-            "items": "#c:gems/diamond"
+            "items": "#c:gems/amethyst"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "quern:quern/diamond_dust"
+        "recipe": "quern:quern/amethyst_dust"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_diamond"
+      "has_amethyst"
     ]
   ],
   "rewards": {
     "recipes": [
-      "quern:quern/diamond_dust"
+      "quern:quern/amethyst_dust"
     ]
   }
 }

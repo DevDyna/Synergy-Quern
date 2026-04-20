@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_diamond": {
+    "has_sawdust": {
       "conditions": {
         "items": [
           {
-            "items": "#c:gems/diamond"
+            "items": "#c:dusts/wood"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "quern:quern/diamond_dust"
+        "recipe": "minecraft:paper"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_diamond"
+      "has_sawdust"
     ]
   ],
   "rewards": {
     "recipes": [
-      "quern:quern/diamond_dust"
+      "minecraft:paper"
     ]
   }
 }
