@@ -93,9 +93,22 @@ public class DataRecipe extends RecipeProvider {
 
                 MillingBuilder.simple(Items.SUGAR_CANE, Items.SUGAR, 2, output);
 
-                MillingBuilder.simple(x.itemIngredient(zLibrary.zItemTags.COAL_LIKE), zLibrary.zItems.CARBON_DUST.get(),
-                                output);
-                MillingBuilder.simple(x.itemIngredient(ItemTags.LOGS), zLibrary.zItems.SAWDUST.get(), 2, output);
+                MillingBuilder.of()
+                                .input(Ingredient.of(this.registries
+                                                .lookupOrThrow(Registries.ITEM)
+                                                .getOrThrow(zLibrary.zItemTags.COAL_LIKE)))
+                                .output(zLibrary.zItems.CARBON_DUST.get())
+                                .unlockedBy("has_coal", has(zLibrary.zItemTags.COAL_LIKE))
+                                .save(output);
+
+                MillingBuilder.of()
+                                .input(Ingredient.of(this.registries
+                                                .lookupOrThrow(Registries.ITEM)
+                                                .getOrThrow(ItemTags.LOGS)))
+                                .output(zLibrary.zItems.SAWDUST.get(), 2)
+                                .unlockedBy("has_log", has(ItemTags.LOGS))
+                                .save(output);
+
                 MillingBuilder.simple(Items.QUARTZ, zLibrary.zItems.QUARTZ_DUST.get(), output);
                 MillingBuilder.simple(Items.LAPIS_LAZULI, zLibrary.zItems.LAPIS_DUST.get(), output);
                 MillingBuilder.simple(Items.EMERALD, zLibrary.zItems.EMERALD_DUST.get(), output);
