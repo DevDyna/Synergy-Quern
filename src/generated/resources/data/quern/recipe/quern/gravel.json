@@ -1,7 +1,7 @@
 {
   "type": "quern:milling",
   "frequence": 20,
-  "ingredient": "minecraft:cobblestone",
+  "ingredient": "#c:cobblestones/normal",
   "result": {
     "id": "minecraft:gravel"
   }

@@ -7,11 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "quern": {
+    "has_wheat": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:wheat"
+            "items": "#c:crops/wheat"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "quern"
+      "has_wheat"
     ]
   ],
   "rewards": {

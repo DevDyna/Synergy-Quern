@@ -1,27 +1,27 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_raw_iron": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:raw_materials/iron"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "quern:quern/iron_dust_from_raw"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "quern": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:raw_iron"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "quern"
+      "has_raw_iron"
     ]
   ],
   "rewards": {

@@ -1,7 +1,7 @@
 {
   "type": "quern:milling",
   "frequence": 80,
-  "ingredient": "minecraft:wheat",
+  "ingredient": "#c:crops/wheat",
   "result": {
     "id": "cakesticklib:flour"
   }

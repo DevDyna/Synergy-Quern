@@ -1,27 +1,27 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_gravel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:gravels"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "quern:quern/sand"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "quern": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:gravel"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "quern"
+      "has_gravel"
     ]
   ],
   "rewards": {

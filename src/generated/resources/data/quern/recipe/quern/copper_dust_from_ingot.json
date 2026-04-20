@@ -1,7 +1,7 @@
 {
   "type": "quern:milling",
   "frequence": 20,
-  "ingredient": "minecraft:copper_ingot",
+  "ingredient": "#c:ingots/copper",
   "result": {
     "id": "cakesticklib:copper_dust"
   }

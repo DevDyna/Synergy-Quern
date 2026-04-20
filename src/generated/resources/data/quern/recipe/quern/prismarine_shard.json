@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:gems/prismarine",
-  "result": {
-    "id": "minecraft:prismarine_shard"
-  }
-}
