@@ -4,7 +4,6 @@ import static com.synergy.quern.Main.ID;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.zLibrary;
 import com.synergy.quern.init.builder.quern.recipe.MillingBuilder;
 import com.synergy.quern.init.types.zBlocks;
@@ -12,10 +11,13 @@ import com.synergy.quern.init.types.zItems;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 
 public class DataRecipe extends RecipeProvider {
 
@@ -31,7 +33,7 @@ public class DataRecipe extends RecipeProvider {
                                 .pattern("SWS")
                                 .define('W', zItems.WOODEN_GEAR.get())
                                 .define('S', Items.STONE_SLAB)
-                                .define('T', Items.STICK)
+                                .define('T', Tags.Items.RODS_WOODEN)
                                 .unlockedBy(ID, has(zItems.WOODEN_GEAR.get()))
                                 .save(output);
 
@@ -39,8 +41,8 @@ public class DataRecipe extends RecipeProvider {
                                 .pattern(" S ")
                                 .pattern("S S")
                                 .pattern(" S ")
-                                .define('S', Items.STICK)
-                                .unlockedBy(ID, has(Items.STICK))
+                                .define('S', Tags.Items.RODS_WOODEN)
+                                .unlockedBy(ID, has(Tags.Items.RODS_WOODEN))
                                 .save(output);
 
                 MillingBuilder.simple(Items.COBBLESTONE, Items.GRAVEL, output);
