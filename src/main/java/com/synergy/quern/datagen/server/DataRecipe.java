@@ -11,12 +11,10 @@ import com.synergy.quern.init.types.zItems;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
 
 public class DataRecipe extends RecipeProvider {
@@ -37,7 +35,7 @@ public class DataRecipe extends RecipeProvider {
                                 .unlockedBy(ID, has(zItems.WOODEN_GEAR.get()))
                                 .save(output);
 
-                ShapedRecipeBuilder.shaped(items, RecipeCategory.MISC, zItems.WOODEN_GEAR.get())
+                shaped(RecipeCategory.MISC, zItems.WOODEN_GEAR.get())
                                 .pattern(" S ")
                                 .pattern("S S")
                                 .pattern(" S ")
@@ -96,25 +94,57 @@ public class DataRecipe extends RecipeProvider {
                 MillingBuilder.simple(Items.SUGAR_CANE, Items.SUGAR, 2, output);
 
                 MillingBuilder.of()
-                                .input(Ingredient.of(this.registries
-                                                .lookupOrThrow(Registries.ITEM)
-                                                .getOrThrow(zLibrary.zItemTags.COAL_LIKE)))
+                                .input(zLibrary.zItemTags.COAL_LIKE,registries)
                                 .output(zLibrary.zItems.CARBON_DUST.get())
                                 .unlockedBy("has_coal", has(zLibrary.zItemTags.COAL_LIKE))
                                 .save(output);
 
                 MillingBuilder.of()
-                                .input(Ingredient.of(this.registries
-                                                .lookupOrThrow(Registries.ITEM)
-                                                .getOrThrow(ItemTags.LOGS)))
+                                .input(ItemTags.LOGS)
                                 .output(zLibrary.zItems.SAWDUST.get(), 2)
                                 .unlockedBy("has_log", has(ItemTags.LOGS))
                                 .save(output);
 
-                MillingBuilder.simple(Items.QUARTZ, zLibrary.zItems.QUARTZ_DUST.get(), output);
-                MillingBuilder.simple(Items.LAPIS_LAZULI, zLibrary.zItems.LAPIS_DUST.get(), output);
-                MillingBuilder.simple(Items.EMERALD, zLibrary.zItems.EMERALD_DUST.get(), output);
-                MillingBuilder.simple(Items.DIAMOND, zLibrary.zItems.DIAMOND_DUST.get(), output);
+                MillingBuilder.simple(
+                                Tags.Items.GEMS_QUARTZ,
+                                zLibrary.zItems.QUARTZ_DUST.get(),
+                                output, registries);
+
+                MillingBuilder.simple(
+                                Tags.Items.GEMS_LAPIS,
+                                zLibrary.zItems.LAPIS_DUST.get(),
+                                output, registries);
+
+                MillingBuilder.simple(
+                                Tags.Items.GEMS_EMERALD,
+                                zLibrary.zItems.EMERALD_DUST.get(),
+                                output, registries);
+
+                MillingBuilder.simple(
+                                Tags.Items.GEMS_DIAMOND,
+                                zLibrary.zItems.DIAMOND_DUST.get(),
+                                output, registries);
+
+                MillingBuilder.simple(
+                                Tags.Items.GEMS_PRISMARINE,
+                                Items.PRISMARINE_SHARD,
+                                output, registries);
+
+                MillingBuilder.simple(
+                                Tags.Items.GEMS_AMETHYST,
+                                zLibrary.zItems.AMETHYST_DUST.get(),
+                                output, registries);
+
+                MillingBuilder.simple(
+                                Items.AMETHYST_BLOCK,
+                                Items.AMETHYST_SHARD, 4,
+                                output);
+
+                shaped(RecipeCategory.MISC, Items.PAPER, 6)
+                                .define('#', zLibrary.zItemTags.SAWDUST)
+                                .pattern("###")
+                                .unlockedBy("has_sawdust", has(zLibrary.zItemTags.SAWDUST))
+                                .save(output);
 
         }
 

@@ -10,10 +10,13 @@ import com.devdyna.cakesticklib.api.utils.x;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -40,20 +43,27 @@ public class MillingBuilder extends BaseRecipeBuilder
         of().input(input).output(output, count).unlockedBy().save(c);
     }
 
-    public static void simple(Ingredient input, Item output, int count, RecipeOutput c) {
-        of().input(input).output(output, count).unlockedBy().save(c);
+    public static void simple(TagKey<Item> input, Item output, int count, RecipeOutput c,HolderLookup.Provider p) {
+        of().input(input,p).output(output, count).unlockedBy().save(c);
     }
 
     public static void simple(Item input, Item output, RecipeOutput c) {
         simple(input, output, 1, c);
     }
 
-    public static void simple(Ingredient input, Item output, RecipeOutput c) {
-        simple(input, output, 1, c);
+    public static void simple(TagKey<Item> input, Item output, RecipeOutput c,HolderLookup.Provider p) {
+        simple(input, output, 1, c,p);
     }
 
+    @Deprecated
     public MillingBuilder input(Ingredient input) {
         this.input = input;
+        return this;
+    }
+
+    public MillingBuilder input(TagKey<Item> tag,HolderLookup.Provider p) {
+        this.input = Ingredient.of(p.lookupOrThrow(Registries.ITEM)
+                                                .getOrThrow(tag));
         return this;
     }
 
