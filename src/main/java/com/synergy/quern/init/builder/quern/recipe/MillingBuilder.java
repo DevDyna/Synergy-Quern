@@ -13,7 +13,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
@@ -39,31 +38,15 @@ public class MillingBuilder extends BaseRecipeBuilder
         return new MillingBuilder();
     }
 
-    public static void simple(Item input, Item output, int count, RecipeOutput c) {
-        of().input(input).output(output, count).unlockedBy().save(c);
-    }
-
-    public static void simple(TagKey<Item> input, Item output, int count, RecipeOutput c,HolderLookup.Provider p) {
-        of().input(input,p).output(output, count).unlockedBy().save(c);
-    }
-
-    public static void simple(Item input, Item output, RecipeOutput c) {
-        simple(input, output, 1, c);
-    }
-
-    public static void simple(TagKey<Item> input, Item output, RecipeOutput c,HolderLookup.Provider p) {
-        simple(input, output, 1, c,p);
-    }
-
     @Deprecated
     public MillingBuilder input(Ingredient input) {
         this.input = input;
         return this;
     }
 
-    public MillingBuilder input(TagKey<Item> tag,HolderLookup.Provider p) {
+    public MillingBuilder input(TagKey<Item> tag, HolderLookup.Provider p) {
         this.input = Ingredient.of(p.lookupOrThrow(Registries.ITEM)
-                                                .getOrThrow(tag));
+                .getOrThrow(tag));
         return this;
     }
 
