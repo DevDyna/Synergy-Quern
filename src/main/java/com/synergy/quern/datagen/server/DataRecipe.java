@@ -68,37 +68,37 @@ public class DataRecipe extends RecipeProvider {
                                 .save(output);
 
                 MillingBuilder.of()
-                                .input(Tags.Items.RAW_MATERIALS_COPPER,registries)
+                                .input(Tags.Items.RAW_MATERIALS_COPPER, registries)
                                 .output(zLibrary.zItems.COPPER_DUST.get(), 2)
                                 .unlockedBy("has_raw_copper", has(Tags.Items.RAW_MATERIALS_COPPER))
                                 .save(output, "_from_raw");
 
                 MillingBuilder.of()
-                                .input(Tags.Items.RAW_MATERIALS_GOLD,registries)
+                                .input(Tags.Items.RAW_MATERIALS_GOLD, registries)
                                 .output(zLibrary.zItems.GOLD_DUST.get(), 2)
                                 .unlockedBy("has_raw_gold", has(Tags.Items.RAW_MATERIALS_GOLD))
                                 .save(output, "_from_raw");
 
                 MillingBuilder.of()
-                                .input(Tags.Items.RAW_MATERIALS_IRON,registries)
+                                .input(Tags.Items.RAW_MATERIALS_IRON, registries)
                                 .output(zLibrary.zItems.IRON_DUST.get(), 2)
                                 .unlockedBy("has_raw_iron", has(Tags.Items.RAW_MATERIALS_IRON))
                                 .save(output, "_from_raw");
 
                 MillingBuilder.of()
-                                .input(Tags.Items.INGOTS_COPPER,registries)
+                                .input(Tags.Items.INGOTS_COPPER, registries)
                                 .output(zLibrary.zItems.COPPER_DUST.get())
                                 .unlockedBy("has_copper_ingot", has(Tags.Items.INGOTS_COPPER))
                                 .save(output, "_from_ingot");
 
                 MillingBuilder.of()
-                                .input(Tags.Items.INGOTS_GOLD,registries)
+                                .input(Tags.Items.INGOTS_GOLD, registries)
                                 .output(zLibrary.zItems.GOLD_DUST.get())
                                 .unlockedBy("has_gold_ingot", has(Tags.Items.INGOTS_GOLD))
                                 .save(output, "_from_ingot");
 
                 MillingBuilder.of()
-                                .input(Tags.Items.INGOTS_IRON,registries)
+                                .input(Tags.Items.INGOTS_IRON, registries)
                                 .output(zLibrary.zItems.IRON_DUST.get())
                                 .unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
                                 .save(output, "_from_ingot");
@@ -165,12 +165,6 @@ public class DataRecipe extends RecipeProvider {
                                 .input(Items.AMETHYST_BLOCK)
                                 .output(Items.AMETHYST_SHARD, 4)
                                 .unlockedBy("has_amethyst_block", has(Items.AMETHYST_BLOCK))
-                                .save(output);
-
-                shaped(RecipeCategory.MISC, Items.PAPER, 6)
-                                .define('#', zLibrary.zItemTags.SAWDUST)
-                                .pattern("###")
-                                .unlockedBy("has_sawdust", has(zLibrary.zItemTags.SAWDUST))
                                 .save(output);
 
         }
