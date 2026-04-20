@@ -1,6 +1,6 @@
 package com.synergy.quern.init.builder.quern.recipe;
 
-import static com.synergy.quern.Main.ID;
+import static com.synergy.quern.Main.MODULE_ID;
 
 import java.util.LinkedHashMap;
 
@@ -10,12 +10,9 @@ import com.devdyna.cakesticklib.api.utils.x;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -44,12 +41,6 @@ public class MillingBuilder extends BaseRecipeBuilder
         return this;
     }
 
-    public MillingBuilder input(TagKey<Item> tag, HolderLookup.Provider p) {
-        this.input = Ingredient.of(p.lookupOrThrow(Registries.ITEM)
-                .getOrThrow(tag));
-        return this;
-    }
-
     public MillingBuilder output(ItemStackTemplate output) {
         this.output = output;
         return this;
@@ -61,7 +52,7 @@ public class MillingBuilder extends BaseRecipeBuilder
     }
 
     public MillingBuilder unlockedBy() {
-        return unlockedBy(ID, InventoryChangeTrigger.TriggerInstance
+        return unlockedBy(MODULE_ID, InventoryChangeTrigger.TriggerInstance
                 .hasItems(input.getValues().stream()
                         .map(Holder::getKey)
                         .map(ResourceKey::identifier)
@@ -86,7 +77,7 @@ public class MillingBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(ID, "quern/" + output.item().getKey().identifier().getPath()
+        return x.rl(MODULE_ID, "quern/" + output.item().getKey().identifier().getPath()
                 + extra);
     }
 

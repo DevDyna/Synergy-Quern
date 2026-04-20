@@ -1,6 +1,6 @@
 package com.synergy.quern.init.types;
 
-import static com.synergy.quern.Main.ID;
+import static com.synergy.quern.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.synergy.quern.init.builder.quern.QuernBE;
@@ -18,7 +18,7 @@ public class zBlockEntities {
     }
 
     public static final DeferredRegister<BlockEntityType<?>> zTiles = DeferredRegister
-            .create(BuiltInRegistries.BLOCK_ENTITY_TYPE, ID);
+            .create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MODULE_ID);
 
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<QuernBE>> QUERN = RegistryUtils.createBlockEntity("quern",zTiles, QuernBE::new, zBlocks.QUERN);
 

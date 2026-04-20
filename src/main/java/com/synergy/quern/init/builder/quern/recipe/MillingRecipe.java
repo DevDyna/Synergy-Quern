@@ -1,6 +1,6 @@
 package com.synergy.quern.init.builder.quern.recipe;
 
-import static com.synergy.quern.Main.ID;
+import static com.synergy.quern.Main.MODULE_ID;
 
 import java.util.List;
 
@@ -80,7 +80,7 @@ public class MillingRecipe extends BaseRecipeType<ItemInput> {
 
     @Override
     public String group() {
-        return ID;
+        return MODULE_ID;
     }
 
     @Override

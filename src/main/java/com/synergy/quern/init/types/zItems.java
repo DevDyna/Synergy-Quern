@@ -1,6 +1,6 @@
 package com.synergy.quern.init.types;
 
-import static com.synergy.quern.Main.ID;
+import static com.synergy.quern.Main.MODULE_ID;
 
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
@@ -11,14 +11,12 @@ public class zItems {
 
     public static void register(IEventBus bus) {
         zItem.register(bus);
-        zIngredients.register(bus);
         zBlockItem.register(bus);
     }
 
-    public static final DeferredRegister.Items zIngredients = DeferredRegister.createItems(ID);
-    public static final DeferredRegister.Items zItem = DeferredRegister.createItems(ID);
-    public static final DeferredRegister.Items zBlockItem = DeferredRegister.createItems(ID);
+    public static final DeferredRegister.Items zItem = DeferredRegister.createItems(MODULE_ID);
+    public static final DeferredRegister.Items zBlockItem = DeferredRegister.createItems(MODULE_ID);
 
-    public static final DeferredItem<Item> WOODEN_GEAR = zIngredients.registerSimpleItem("wooden_gear");
+    public static final DeferredItem<Item> WOODEN_GEAR = zItem.registerSimpleItem("wooden_gear");
   
 }

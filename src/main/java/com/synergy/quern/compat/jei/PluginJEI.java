@@ -1,6 +1,6 @@
 package com.synergy.quern.compat.jei;
 
-import static com.synergy.quern.Main.ID;
+import static com.synergy.quern.Main.MODULE_ID;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class PluginJEI implements IModPlugin {
 
     @Override
     public Identifier getPluginUid() {
-        return x.rl(ID,"jei_plugin");
+        return x.rl(MODULE_ID,"jei_plugin");
     }
 
     @Override

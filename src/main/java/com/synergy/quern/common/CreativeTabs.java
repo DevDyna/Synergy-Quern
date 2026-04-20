@@ -15,7 +15,7 @@ public class CreativeTabs {
             event.accept(zBlocks.QUERN.get());
 
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS)
-            zItems.zIngredients.getEntries().forEach(i -> event.accept(i.get()));
+            zItems.zItem.getEntries().forEach(i -> event.accept(i.get()));
 
     }
 }

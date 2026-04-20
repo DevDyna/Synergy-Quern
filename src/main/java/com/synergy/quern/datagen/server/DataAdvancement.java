@@ -1,6 +1,6 @@
 package com.synergy.quern.datagen.server;
 
-import static com.synergy.quern.Main.ID;
+import static com.synergy.quern.Main.MODULE_ID;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -33,13 +33,13 @@ public class DataAdvancement extends AdvancementProvider {
 
                         var quern = AdvancementsUtils
                                         .getExistingParent("minecraft:story/mine_stone", zBlocks.QUERN.get(),
-                                                        ID,"quern",
+                                                        MODULE_ID, "quern",
                                                         AdvancementType.TASK, true, true, false)
                                         .addCriterion("craft_quern",
                                                         InventoryChangeTrigger.TriggerInstance
                                                                         .hasItems(zBlocks.QUERN.get()))
                                         .requirements(AdvancementRequirements.allOf(List.of("craft_quern")))
-                                        .save(c, ID + ":extend/story/mine_stone/quern");
+                                        .save(c, MODULE_ID + ":extend/story/mine_stone/quern");
 
                 }
 

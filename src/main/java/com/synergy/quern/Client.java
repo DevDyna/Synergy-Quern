@@ -16,8 +16,8 @@ import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
-@Mod(value = Main.ID, dist = Dist.CLIENT)
-@EventBusSubscriber(modid = Main.ID, value = Dist.CLIENT)
+@Mod(value = Main.MODULE_ID, dist = Dist.CLIENT)
+@EventBusSubscriber(modid = Main.MODULE_ID, value = Dist.CLIENT)
 public class Client {
 
     public Client(ModContainer container) {

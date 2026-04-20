@@ -1,6 +1,6 @@
 package com.synergy.quern.compat.jei.categories;
 
-import static com.synergy.quern.Main.ID;
+import static com.synergy.quern.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.compat.jei.BaseRecipeCategory;
 import com.devdyna.cakesticklib.api.primitive.Size;
@@ -34,7 +34,7 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
 
     @Override
     public String getTraslationKey() {
-        return ID + ".jei.quern";
+        return MODULE_ID + ".jei.quern";
     }
 
     @Override
@@ -49,7 +49,7 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
 
     @Override
     public Identifier setBackGround() {
-        return x.rl(ID,"textures/gui/jei/simple.png");
+        return x.rl(MODULE_ID, "textures/gui/jei/simple.png");
     }
 
     @Override

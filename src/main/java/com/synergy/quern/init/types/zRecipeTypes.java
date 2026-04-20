@@ -1,6 +1,6 @@
 package com.synergy.quern.init.types;
 
-import static com.synergy.quern.Main.ID;
+import static com.synergy.quern.Main.MODULE_ID;
 
 import com.synergy.quern.api.RecipeRegister;
 import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
@@ -19,8 +19,8 @@ public class zRecipeTypes {
     }
 
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister
-            .create(Registries.RECIPE_SERIALIZER, ID);
-    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, ID);
+            .create(Registries.RECIPE_SERIALIZER, MODULE_ID);
+    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, MODULE_ID);
 
     public static final RecipeRegister<MillingRecipe> QUERN = RecipeRegister.of("milling",
             () -> MillingRecipe.serializer());
