@@ -16,7 +16,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 
@@ -37,19 +36,20 @@ public class MillingBuilder extends BaseRecipeBuilder
         return new MillingBuilder();
     }
 
-    public static void simple(Item input, Item output,int count, RecipeOutput c) {
-        of().input(input).output(output,count).unlockedBy().save(c);
+    public static void simple(Item input, Item output, int count, RecipeOutput c) {
+        of().input(input).output(output, count).unlockedBy().save(c);
     }
-    
-    public static void simple(Ingredient input, Item output,int count, RecipeOutput c) {
-        of().input(input).output(output,count).unlockedBy().save(c);
+
+    public static void simple(Ingredient input, Item output, int count, RecipeOutput c) {
+        of().input(input).output(output, count).unlockedBy().save(c);
     }
+
     public static void simple(Item input, Item output, RecipeOutput c) {
-        simple(input, output,1, c);
+        simple(input, output, 1, c);
     }
 
     public static void simple(Ingredient input, Item output, RecipeOutput c) {
-        simple(input, output,1, c);
+        simple(input, output, 1, c);
     }
 
     public MillingBuilder input(Ingredient input) {
@@ -73,7 +73,6 @@ public class MillingBuilder extends BaseRecipeBuilder
                         .map(Holder::getKey)
                         .map(ResourceKey::identifier)
                         .map(BuiltInRegistries.ITEM::getValue)
-                        .filter(i -> Items.BARRIER.equals(i))
                         .toArray(Item[]::new)));
     }
 
@@ -97,4 +96,5 @@ public class MillingBuilder extends BaseRecipeBuilder
         return x.rl(ID, "quern/" + output.item().getKey().identifier().getPath()
                 + extra);
     }
+
 }
