@@ -1,7 +1,5 @@
 package com.synergy.quern.datagen.server;
 
-import static com.synergy.quern.Main.ID;
-
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.setup.registry.zLibrary;
@@ -32,7 +30,7 @@ public class DataRecipe extends RecipeProvider {
                                 .define('W', zItems.WOODEN_GEAR.get())
                                 .define('S', Items.STONE_SLAB)
                                 .define('T', Tags.Items.RODS_WOODEN)
-                                .unlockedBy(ID, has(zItems.WOODEN_GEAR.get()))
+                                .unlockedBy("craft_quern", has(zItems.WOODEN_GEAR.get()))
                                 .save(output);
 
                 shaped(RecipeCategory.MISC, zItems.WOODEN_GEAR.get())
@@ -40,7 +38,7 @@ public class DataRecipe extends RecipeProvider {
                                 .pattern("S S")
                                 .pattern(" S ")
                                 .define('S', Tags.Items.RODS_WOODEN)
-                                .unlockedBy(ID, has(Tags.Items.RODS_WOODEN))
+                                .unlockedBy("craft_wooden_gear", has(Tags.Items.RODS_WOODEN))
                                 .save(output);
 
                 MillingBuilder.of()
