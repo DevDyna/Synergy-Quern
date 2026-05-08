@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.registry.zLibrary;
+import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.quern.api.ItemInput;
 
 import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
@@ -48,7 +48,7 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
 
     @Override
     public ItemStacksResourceHandler getItemStorage() {
-        return getData(zLibrary.zHandlers.ITEM_STORAGE);
+        return getData(LibHandlers.ITEM_STORAGE);
     }
 
     @Override
