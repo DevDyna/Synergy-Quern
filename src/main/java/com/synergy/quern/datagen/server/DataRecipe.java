@@ -27,10 +27,10 @@ public class DataRecipe extends RecipeProvider {
                 ShapedRecipeBuilder.shaped(items, RecipeCategory.REDSTONE, zBlocks.QUERN.get())
                                 .pattern("TS ")
                                 .pattern("SWS")
-                                .define('W', LibTags.Items.GEAR_WOODEN)
+                                .define('W', LibTags.Items.WOODEN_GEAR)
                                 .define('S', Items.STONE_SLAB)
                                 .define('T', Tags.Items.RODS_WOODEN)
-                                .unlockedBy("craft_quern", has(LibTags.Items.GEAR_WOODEN))
+                                .unlockedBy("craft_quern", has(LibTags.Items.WOODEN_GEAR))
                                 .save(output);
 
                 MillingBuilder.of()
