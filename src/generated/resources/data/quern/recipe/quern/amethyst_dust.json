@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:gems/amethyst",
-  "result": {
-    "id": "cakesticklib:amethyst_dust"
-  }
-}

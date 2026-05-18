@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:gems/emerald",
-  "result": {
-    "id": "cakesticklib:emerald_dust"
-  }
-}

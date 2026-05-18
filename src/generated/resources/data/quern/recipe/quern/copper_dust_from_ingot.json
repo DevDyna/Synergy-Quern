@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:ingots/copper",
-  "result": {
-    "id": "cakesticklib:copper_dust"
-  }
-}

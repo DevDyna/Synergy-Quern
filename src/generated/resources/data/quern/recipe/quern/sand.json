@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:gravels",
-  "result": {
-    "id": "minecraft:sand"
-  }
-}

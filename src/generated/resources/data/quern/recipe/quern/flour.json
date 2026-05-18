@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 80,
-  "ingredient": "#c:crops/wheat",
-  "result": {
-    "id": "cakesticklib:flour"
-  }
-}

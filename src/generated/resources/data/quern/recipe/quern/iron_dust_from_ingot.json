@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:ingots/iron",
-  "result": {
-    "id": "cakesticklib:iron_dust"
-  }
-}

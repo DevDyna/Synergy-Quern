@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#minecraft:coals",
-  "result": {
-    "id": "cakesticklib:carbon_dust"
-  }
-}

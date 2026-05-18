@@ -1,8 +1,0 @@
-{
-  "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:ingots/gold",
-  "result": {
-    "id": "cakesticklib:gold_dust"
-  }
-}
