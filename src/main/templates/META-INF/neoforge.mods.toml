@@ -8,10 +8,10 @@ version="${mod_version}"
 displayName="${mod_name}"
 description='''${mod_description}'''
 
-    versionRange="[${neo_version},)" #mandatory
 [[dependencies.${mod_id}]]
     modId="neoforge"
     type="required"
+    versionRange="${neo_version_range}"
     ordering="NONE"
     side="BOTH"
 
