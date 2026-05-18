@@ -1,0 +1,18 @@
+{
+  "block.quern.quern": "Quern",
+  "item.quern.amethyst_dust": "Amethyst Dust",
+  "item.quern.carbon_dust": "Carbon Dust",
+  "item.quern.copper_dust": "Copper Dust",
+  "item.quern.diamond_dust": "Diamond Dust",
+  "item.quern.emerald_dust": "Emerald Dust",
+  "item.quern.flour": "Flour",
+  "item.quern.gold_dust": "Gold Dust",
+  "item.quern.iron_dust": "Iron Dust",
+  "item.quern.lapis_dust": "Lapis Dust",
+  "item.quern.quartz_dust": "Quartz Dust",
+  "item.quern.sawdust": "Sawdust",
+  "item.quern.wooden_gear": "Wooden Gear",
+  "quern.advancement.branch.quern": "It spin!",
+  "quern.advancement.branch.quern.desc": "Craft a quern to process resources into dusts",
+  "quern.jei.quern": "Quern Milling"
+}

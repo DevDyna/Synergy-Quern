@@ -1,0 +1,11 @@
+{
+  "type": "quern:milling",
+  "frequence": 60,
+  "ingredient": {
+    "item": "minecraft:amethyst_block"
+  },
+  "result": {
+    "count": 4,
+    "id": "minecraft:amethyst_shard"
+  }
+}

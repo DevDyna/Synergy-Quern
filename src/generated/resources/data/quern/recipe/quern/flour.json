@@ -1,0 +1,11 @@
+{
+  "type": "quern:milling",
+  "frequence": 80,
+  "ingredient": {
+    "tag": "c:crops/wheat"
+  },
+  "result": {
+    "count": 1,
+    "id": "quern:flour"
+  }
+}

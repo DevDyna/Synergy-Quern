@@ -1,0 +1,9 @@
+{
+  "values": [
+    "quern:sawdust",
+    {
+      "id": "#c:dusts/saw",
+      "required": false
+    }
+  ]
+}

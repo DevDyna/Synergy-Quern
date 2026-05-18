@@ -1,0 +1,11 @@
+{
+  "type": "quern:milling",
+  "frequence": 60,
+  "ingredient": {
+    "item": "minecraft:deepslate"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:cobbled_deepslate"
+  }
+}

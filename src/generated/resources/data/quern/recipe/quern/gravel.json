@@ -1,0 +1,11 @@
+{
+  "type": "quern:milling",
+  "frequence": 60,
+  "ingredient": {
+    "tag": "c:cobblestones/normal"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:gravel"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "quern:milling",
+  "frequence": 60,
+  "ingredient": {
+    "tag": "c:raw_materials/iron"
+  },
+  "result": {
+    "count": 2,
+    "id": "quern:iron_dust"
+  }
+}

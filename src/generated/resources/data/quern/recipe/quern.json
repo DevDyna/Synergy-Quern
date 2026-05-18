@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "S": {
+      "item": "minecraft:stone_slab"
+    },
+    "T": {
+      "tag": "c:rods/wooden"
+    },
+    "W": {
+      "tag": "c:gears/wooden"
+    }
+  },
+  "pattern": [
+    "TS ",
+    "SWS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "quern:quern"
+  }
+}

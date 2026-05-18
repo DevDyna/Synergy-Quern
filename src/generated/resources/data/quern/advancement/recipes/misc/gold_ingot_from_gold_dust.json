@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gold_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "quern:gold_dust"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "quern:gold_ingot_from_gold_dust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gold_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "quern:gold_ingot_from_gold_dust"
+    ]
+  }
+}
