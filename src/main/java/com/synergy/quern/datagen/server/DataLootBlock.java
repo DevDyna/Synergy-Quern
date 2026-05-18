@@ -8,6 +8,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class DataLootBlock extends BlockLootSubProvider {
 
@@ -15,10 +17,20 @@ public class DataLootBlock extends BlockLootSubProvider {
                 super(Set.of(), FeatureFlags.DEFAULT_FLAGS, l);
         }
 
+        List<DeferredRegister.Blocks> blocktypes = List.of(
+                        
+                        zBlocks.zBlock,
+                        zBlocks.zBlockItem
+                       
+
+
+        );
+
         @Override
         protected Iterable<Block> getKnownBlocks() {
-
-                return List.of(zBlocks.QUERN.get());
+                List<Block> blocks = new ArrayList<>();
+                blocktypes.forEach(t -> blocks.addAll(t.getEntries().stream().map(DeferredHolder::get).toList()));
+                return blocks;
         }
 
         @Override
@@ -26,5 +38,4 @@ public class DataLootBlock extends BlockLootSubProvider {
 
                 dropSelf(zBlocks.QUERN.get());
         }
-
 }

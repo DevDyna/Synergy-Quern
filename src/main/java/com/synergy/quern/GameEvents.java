@@ -1,18 +1,13 @@
 package com.synergy.quern;
 
-import com.synergy.quern.common.*;
-
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.neoforge.common.NeoForge;
 
 public class GameEvents {
 
-    public static void build(IEventBus bus, ModContainer c) {
+    public static void register(IEventBus bus) {
 
         bus.addListener(Capability::register);
-        bus.register(CreativeTabs.class);
-        NeoForge.EVENT_BUS.register(RecipeSender.class);
+        bus.addListener(CreativeTab::register);
 
     }
 

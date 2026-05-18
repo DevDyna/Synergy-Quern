@@ -1,54 +1,60 @@
 package com.synergy.quern.datagen;
 
-import static com.synergy.quern.Main.MODULE_ID;
+
+import static com.synergy.quern.Main.ID;
 
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import com.devdyna.cakesticklib.CakeStickLib;
 import com.synergy.quern.datagen.client.*;
 import com.synergy.quern.datagen.server.*;
-import com.synergy.quern.datagen.server.DataAdvancement.DataAdvancementGenerator;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.data.*;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-@EventBusSubscriber(modid = MODULE_ID)
+@SuppressWarnings({ "removal", "deprecation" })
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = ID)
 public class Controller {
     @SubscribeEvent
-    public static void gatherData(GatherDataEvent.Client e) {
-        DataGenerator gen = e.getGenerator();
-        CompletableFuture<HolderLookup.Provider> provider = e.getLookupProvider();
-        // PackGenerator v = gen.getVanillaPack(true);
-        var output = gen.getPackOutput();
-
-        e.createDatapackRegistryObjects(new RegistrySetBuilder(),
-                Set.of("minecraft", MODULE_ID, CakeStickLib.MODULE_ID));
+    public static void gatherData(GatherDataEvent e) {
+        DataGenerator g = e.getGenerator();
+        PackOutput po = g.getPackOutput();
+        ExistingFileHelper f = e.getExistingFileHelper();
+        CompletableFuture<HolderLookup.Provider> pr = e.getLookupProvider();
 
         // client
 
-        e.addProvider(new DataLang(output));
+        providerGen(e, g, new DataBlockModelState(po, f));
+        providerGen(e, g, new DataItemModel(po, f));
+        providerGen(e, g, new DataLang(po));
+
 
         // server
-
-        e.addProvider(new DataAdvancement(output, provider, List.of(new DataAdvancementGenerator())));
-
-        e.addProvider(new DataBlockTag(output, provider));
-
-        e.addProvider(new LootTableProvider(output, Set.of(),
+        DataBlockTag blocktag = new DataBlockTag(po, pr, f);
+        providerGen(e, g, blocktag);
+        providerGen(e, g, new DataItemTag(po, pr, blocktag.contentsGetter(),f));
+        providerGen(e, g, new LootTableProvider(po, Set.of(),
                 List.of(
                         new LootTableProvider.SubProviderEntry(DataLootBlock::new, LootContextParamSets.BLOCK)),
-                provider));
+                pr));
 
-        e.createProvider(DataRecipe.RecipeRunner::new);
+        providerGen(e, g, new DataRecipe(po, pr));
+        providerGen(e, g, new DataAdvancement(po, pr, f));
+        
 
+    }
+
+    private static <T extends DataProvider> void providerGen(GatherDataEvent e, DataGenerator g, T f) {
+        g.addProvider(e.includeClient(), f);
     }
 
 }

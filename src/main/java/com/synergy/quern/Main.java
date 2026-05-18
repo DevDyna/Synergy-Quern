@@ -6,15 +6,15 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.ModContainer;
 
-@Mod(Main.MODULE_ID)
+@Mod(Main.ID)
 public class Main {
 
-    public static final String MODULE_ID = "quern";
-    
-    public Main(IEventBus bus, ModContainer c) {
+    public static final String ID = "quern";
+
+    public Main(IEventBus bus, ModContainer mc) {
 
         Material.register(bus);
-        GameEvents.build(bus, c);
+        GameEvents.register(bus);
     }
 
 }

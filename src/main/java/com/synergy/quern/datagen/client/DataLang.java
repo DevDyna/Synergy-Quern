@@ -1,38 +1,55 @@
 package com.synergy.quern.datagen.client;
 
-import static com.synergy.quern.Main.MODULE_ID;
-
-import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
+import static com.synergy.quern.Main.ID;
 
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zItems;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class DataLang extends LanguageProvider {
 
         public DataLang(PackOutput o) {
-                super(o, MODULE_ID, "en_us");
+                super(o, ID, "en_us");
         }
+
+        public static final String TIP_COLOR = "§7";
 
         @Override
         protected void addTranslations() {
 
                 addBlock(zBlocks.QUERN, "Quern");
 
-                zItems.zItem.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
+                zItems.zDusts.getEntries().forEach(i -> addItem(i, named(i)));
+                zItems.zGears.getEntries().forEach(i -> addItem(i, named(i)));
+                zItems.zSimple.getEntries().forEach(i -> addItem(i, named(i)));
 
-                advKey(MODULE_ID, "quern", "It spin!", "Craft a quern to process resources into dusts");
+                add(ID + ".jei.quern",
+                                "Quern Milling");
 
-                add(MODULE_ID + ".jei.quern", "Milling Recipes");
+                advKey("quern", "It spin!", "Craft a quern to process resources into dusts");
 
         }
 
-        @Deprecated
-        private void advKey(String modid, String k, String title, String desc) {
-                add(MODULE_ID + ".advancement.branch." + k, title);
-                add(MODULE_ID + ".advancement.branch." + k + ".desc", desc);
+        public String named(DeferredHolder<?, ?> b) {
+
+                StringBuilder result = new StringBuilder();
+                for (String word : b.getRegisteredName()
+                                .replace(ID + ":", "")
+                                .replaceAll("_", " ")
+                                .split(" "))
+                        if (!word.isEmpty())
+                                result.append(Character.toUpperCase(word.charAt(0)))
+                                                .append(word.substring(1))
+                                                .append(" ");
+                return result.toString().trim();
+        }
+
+        private void advKey(String k, String title, String desc) {
+                add(ID + ".advancement.branch." + k, title);
+                add(ID + ".advancement.branch." + k + ".desc", desc);
         }
 
 }

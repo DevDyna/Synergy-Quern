@@ -3,10 +3,10 @@ package com.synergy.quern.api;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
 
-public record ItemInput(ItemStack input) implements RecipeInput {
+public record MonoItemInput(ItemStack input) implements RecipeInput {
 
     @Override
-    public ItemStack getItem(int arg0) {
+    public ItemStack getItem(int i) {
         return input;
     }
 
@@ -14,5 +14,5 @@ public record ItemInput(ItemStack input) implements RecipeInput {
     public int size() {
         return 1;
     }
-    
+
 }

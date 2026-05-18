@@ -1,0 +1,233 @@
+package com.synergy.quern.api.utils;
+
+
+import static com.synergy.quern.Main.ID;
+
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.AdvancementType;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.advancements.AdvancementSubProvider;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public class DataGenUtil {
+
+    public static final ResourceLocation CUTOUT = ResourceLocation.withDefaultNamespace("cutout");
+
+    private static String mc = "minecraft:";
+    public static String TOOL = mc + "item/handheld";
+    public static String ITEM = mc + "item/generated";
+    private static String mod = ID + ":";
+
+    public static ItemModelBuilder itemTool(Item item, ItemModelProvider b) {
+        return itemModel(item, b, "", x.path(item), TOOL);
+    }
+
+    public static ItemModelBuilder itemTool(Item item, ItemModelProvider b, String pathSuffix) {
+        return itemModel(item, b, pathSuffix, x.path(item), TOOL);
+    }
+
+    public static ItemModelBuilder itemTool(Item item, ItemModelProvider b, String pathSuffix, String itemPath) {
+        return itemModel(item, b, pathSuffix, itemPath, TOOL);
+    }
+
+    public static ItemModelBuilder itemModel(Item item, ItemModelProvider b) {
+        return itemModel(item, b, "");
+    }
+
+    public static ItemModelBuilder itemModel(Item item, ItemModelProvider b, String pathSuffix) {
+        return itemModel(item, b, pathSuffix, x.path(item));
+    }
+
+    public static ItemModelBuilder itemModel(Item item, ItemModelProvider b, String pathSuffix, String itemPath) {
+        return itemModel(item, b, pathSuffix, itemPath, ITEM);
+    }
+
+    public static ItemModelBuilder itemModel(Item item, ItemModelProvider b, String pathSuffix, String itemPath,
+            String modelType) {
+        return b.withExistingParent(x.path(item), modelType).texture("layer0",
+                x.rl("item/" + pathSuffix + itemPath));
+    }
+
+    public static ItemModelBuilder itemBlock(Block block, ItemModelProvider b) {
+        return b.withExistingParent(x.path(block), mod + "block/" + x.path(block));
+    }
+
+    public static BlockModelBuilder cross(BlockStateProvider t, String filePath, ResourceLocation texturePath) {
+        return t.models().withExistingParent(filePath, t.mcLoc("block/cross")).texture("cross", texturePath)
+                .renderType("minecraft:cutout");
+    }
+
+    public static BlockModelBuilder crop(BlockStateProvider t, String filePath, ResourceLocation texturePath) {
+        return t.models().withExistingParent(filePath, t.mcLoc("block/crop")).texture("crop", texturePath)
+                .renderType("minecraft:cutout");
+    }
+
+    public static BlockModelBuilder crossORcrop(BlockStateProvider t, boolean isCrop, String filePath,
+            ResourceLocation texturePath) {
+        return t.models().withExistingParent(filePath, t.mcLoc("block/" + (isCrop ? "crop" : "cross")))
+                .texture((isCrop ? "crop" : "cross"), texturePath)
+                .renderType("minecraft:cutout");
+    }
+
+    /**
+     * @param block
+     * @param b      this
+     * @param parent Main.ID + ":block/..."
+     */
+    public static BlockModelBuilder BlockwithParent(Block block, BlockStateProvider b,
+            String parent) {
+        return b.models().withExistingParent(x.path(block), parent);
+    }
+
+    public static void BiStateBlock(BlockStateProvider t, Block b, BooleanProperty p, ModelFile on,
+            ModelFile off) {
+        t.getVariantBuilder(b).partialState().with(p, true).modelForState()
+                .modelFile(on)
+                .addModel().partialState().with(p, false).modelForState()
+                .modelFile(off)
+                .addModel();
+    }
+
+    public static ItemModelBuilder itemBlockwithParent(Block block, ItemModelProvider b, String parent) {
+        return b.withExistingParent(x.path(block), parent);
+    }
+
+    public static LootItemBlockStatePropertyCondition.Builder lootTableCondition(Block block, IntegerProperty prop,
+            int age_limit) {
+        return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(prop, age_limit));
+    }
+
+    public static LootItemBlockStatePropertyCondition.Builder lootTableCondition(Block block, BooleanProperty prop) {
+        return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(prop, true));
+    }
+
+    public static LootItemBlockStatePropertyCondition.Builder lootTableConditionInverse(Block block,
+            BooleanProperty prop) {
+        return LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(prop, false));
+    }
+
+ 
+
+    /**
+     * 
+     * @deprecated
+     */
+    @Deprecated
+    public static ResourceLocation modLoc(String path) {
+        return ResourceLocation.fromNamespaceAndPath(ID, path);
+    }
+
+    /**
+     * Apply a rool<br/>
+     * 
+     * <pre>
+     * .setRolls(UniformGenerator.between(0f,1f))
+     * </pre>
+     * 
+     * <br/>
+     * <br/>
+     * Add lootItems<br/>
+     * 
+     * <pre>
+     * .add(LootItem.lootTableItem(Items.STONE))
+     * </pre>
+     */
+    public static LootPool.Builder createPool() {
+        return LootPool.lootPool();
+    }
+
+    /**
+     * 
+     * @param pool
+     * 
+     *             <pre>
+     *             DataGenUtil.createPool()
+     *             </pre>
+     */
+    public static LootTable.Builder createTable(LootPool.Builder pool) {
+        return LootTable
+                .lootTable()
+                .withPool(pool)
+                .setParamSet(LootContextParamSet.builder().build());
+    }
+
+    public static void registerTable(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> c,
+            ResourceLocation tableLocation,
+            LootTable.Builder table) {
+        c.accept(ResourceKey.create(Registries.LOOT_TABLE, tableLocation), table);
+    }
+
+    public static Item[] getItems(DeferredRegister<?> register) {
+        return register.getEntries().stream()
+                .map(DeferredHolder::get)
+                .flatMap(i -> {
+                    if (i instanceof Item item) {
+                        return Stream.of(item);
+                    } else if (i instanceof Block block) {
+                        Item item = Item.BY_BLOCK.get(block);
+                        return item != null ? Stream.of(item) : Stream.empty(); // check if block has blockitem
+                    }
+                    return Stream.empty();
+                })
+                .toArray(Item[]::new);
+    }
+
+    public static Advancement.Builder getExistingParent(AdvancementHolder parent, ItemLike icon, String t,
+            AdvancementType type, boolean showToast, boolean announceToChat, boolean hidden) {
+        return Advancement.Builder.advancement().parent(parent).display(icon,
+                Component.translatable(ID + ".advancement.branch." + t),
+                Component.translatable(ID + ".advancement.branch." + t + ".desc"),
+                null, type, showToast, announceToChat, hidden);
+    }
+
+    public static Advancement.Builder getExistingParent(String parent, ItemLike icon, String t,
+            AdvancementType type, boolean showToast, boolean announceToChat, boolean hidden) {
+        return getExistingParent(AdvancementSubProvider.createPlaceholder(parent), icon, t, type, showToast,
+                announceToChat, hidden);
+    }
+
+    public static AdvancementHolder fuelpelletAdvancement(AdvancementHolder p, Consumer<AdvancementHolder> c,
+            Item i, String id, boolean isfinal) {
+        return DataGenUtil
+                .getExistingParent(p, i,
+                        id,
+                        (isfinal ? AdvancementType.CHALLENGE : AdvancementType.GOAL), true, true, false)
+                .addCriterion("craft_" + id,
+                        InventoryChangeTrigger.TriggerInstance
+                                .hasItems(i))
+                .requirements(AdvancementRequirements.allOf(List.of("craft_" + id)))
+                .save(c, ID + ":main/steel/" + id);
+    }
+
+}

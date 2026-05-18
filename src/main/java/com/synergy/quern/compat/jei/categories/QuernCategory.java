@@ -1,11 +1,10 @@
 package com.synergy.quern.compat.jei.categories;
 
-import static com.synergy.quern.Main.MODULE_ID;
 
-import com.devdyna.cakesticklib.api.compat.jei.BaseRecipeCategory;
-import com.devdyna.cakesticklib.api.primitive.Size;
-import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
+
+import com.synergy.quern.api.utils.Size;
+import com.synergy.quern.compat.jei.categories.core.BaseRecipeCategory;
+import com.synergy.quern.init.builder.quern.QuernMillingRecipe;
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zRecipeTypes;
 
@@ -13,28 +12,28 @@ import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.types.IRecipeType;
-import net.minecraft.resources.Identifier;
+import mezz.jei.api.recipe.RecipeType;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.ItemLike;
 
-public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
+@SuppressWarnings("null")
+public class QuernCategory extends BaseRecipeCategory<QuernMillingRecipe> {
 
     public QuernCategory(IGuiHelper helper) {
         super(helper);
     }
 
-    public static final IRecipeType<RecipeHolder<MillingRecipe>> TYPE = IRecipeType
-            .create(zRecipeTypes.QUERN.getType());
+    public static final RecipeType<RecipeHolder<QuernMillingRecipe>> TYPE = RecipeType
+            .createFromVanilla(zRecipeTypes.QUERN_MILLING.getType());
 
     @Override
-    public IRecipeType<RecipeHolder<MillingRecipe>> getRecipeType() {
+    public RecipeType<RecipeHolder<QuernMillingRecipe>> getRecipeType() {
         return TYPE;
     }
 
     @Override
-    public String getTraslationKey() {
-        return MODULE_ID + ".jei.quern";
+    public String getTitleKey() {
+        return "quern";
     }
 
     @Override
@@ -48,18 +47,16 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     }
 
     @Override
-    public Identifier setBackGround() {
-        return x.rl(MODULE_ID, "textures/gui/jei/simple.png");
+    public String setBackGround() {
+        return "textures/gui/jei/simple.png";
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, MillingRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, QuernMillingRecipe recipe, IFocusGroup focuses) {
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
-                .add(recipe.getInput());
+        builder.addSlot(RecipeIngredientRole.INPUT, 2, 2).addIngredients(recipe.getInput());
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 2)
-                .add(recipe.getOutput().create());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 2).addItemStack(recipe.getOutput());
     }
 
     @Override
@@ -68,7 +65,7 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     }
 
     @Override
-    public int tickValue(MillingRecipe recipe) {
+    public int tickValue(QuernMillingRecipe recipe) {
         return recipe.getTime();
     }
 

@@ -1,9 +1,11 @@
 package com.synergy.quern.init.types;
 
-import static com.synergy.quern.Main.MODULE_ID;
 
+import static com.synergy.quern.Main.ID;
+
+import com.synergy.quern.Main;
 import com.synergy.quern.api.RecipeRegister;
-import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
+import com.synergy.quern.init.builder.quern.QuernMillingRecipe;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -19,10 +21,10 @@ public class zRecipeTypes {
     }
 
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister
-            .create(Registries.RECIPE_SERIALIZER, MODULE_ID);
-    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, MODULE_ID);
+            .create(Registries.RECIPE_SERIALIZER, Main.ID);
+    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, ID);
 
-    public static final RecipeRegister<MillingRecipe> QUERN = RecipeRegister.of("milling",
-            () -> MillingRecipe.serializer());
+    public static final RecipeRegister<QuernMillingRecipe> QUERN_MILLING = RecipeRegister.of("milling",
+            QuernMillingRecipe.Serializer::new);
 
 }
