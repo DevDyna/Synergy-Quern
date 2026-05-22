@@ -10,6 +10,7 @@ import com.devdyna.cakesticklib.api.utils.x;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -26,13 +27,14 @@ public class MillingBuilder extends BaseRecipeBuilder
     private int tick;
     private ItemStackTemplate output;
 
-    private MillingBuilder() {
+    private MillingBuilder(HolderLookup.Provider p) {
+        super(p);
         this.tick = 20;
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
     }
 
-    public static MillingBuilder of() {
-        return new MillingBuilder();
+    public static MillingBuilder of(HolderLookup.Provider p) {
+        return new MillingBuilder(p);
     }
 
     @Deprecated
