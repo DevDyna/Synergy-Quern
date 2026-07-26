@@ -18,17 +18,13 @@ mavenLocal()
             includeGroup "curse.maven"
         }
     }
-
-     maven {
-        url = uri("../CakeStickLib/repo")
-    }
 }
 
 
 dependencies {
 
     //lib
-    implementation "com.devdyna.cakestick:CakeStickLib:${cakesticklib}"
+    implementation "curse.maven:cakesticklib-1516173:${cakesticklib}"
 
     //compat
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
