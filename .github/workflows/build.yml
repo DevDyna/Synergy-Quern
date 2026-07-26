@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: DevDyna/CakeStickLib
-          path: ../CakeStickLib
+          path: CakeStickLib
 
       - name: Setup JDK 25
         uses: actions/setup-java@v4
