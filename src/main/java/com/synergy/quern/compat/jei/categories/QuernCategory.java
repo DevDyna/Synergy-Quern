@@ -4,6 +4,7 @@ import static com.synergy.quern.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.compat.jei.BaseRecipeCategory;
 import com.devdyna.cakesticklib.api.primitive.Size;
+import com.devdyna.cakesticklib.api.utils.ColorUtils;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
 import com.synergy.quern.init.types.zBlocks;
@@ -71,5 +72,10 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     public int tickValue(MillingRecipe recipe) {
         return recipe.getTime();
     }
+
+    @Override
+    public int tickColor(MillingRecipe recipe) {
+      return ColorUtils.WHITE.WHITE.getRGB();
+   }
 
 }
