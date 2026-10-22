@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:gems/diamond",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "#c:gems/diamond"
+  },
+  "output": {
     "id": "cakesticklib:diamond_dust"
-  }
+  },
+  "ticks": 20
 }

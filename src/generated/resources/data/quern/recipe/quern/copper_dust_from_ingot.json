@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:ingots/copper",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "#c:ingots/copper"
+  },
+  "output": {
     "id": "cakesticklib:copper_dust"
-  }
+  },
+  "ticks": 20
 }

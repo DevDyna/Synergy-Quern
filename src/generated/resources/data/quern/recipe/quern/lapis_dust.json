@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:gems/lapis",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "#c:gems/lapis"
+  },
+  "output": {
     "id": "cakesticklib:lapis_dust"
-  }
+  },
+  "ticks": 20
 }

@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:gems/quartz",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "#c:gems/quartz"
+  },
+  "output": {
     "id": "cakesticklib:quartz_dust"
-  }
+  },
+  "ticks": 20
 }

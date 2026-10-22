@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:ingots/gold",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "#c:ingots/gold"
+  },
+  "output": {
     "id": "cakesticklib:gold_dust"
-  }
+  },
+  "ticks": 20
 }
