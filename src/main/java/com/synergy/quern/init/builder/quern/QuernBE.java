@@ -133,6 +133,9 @@ public class QuernBE extends SynchedBlockEntity implements ItemStorageBlock, NoG
 
         var recipe = r.get().value();
 
+        if (recipe.getInput().count() > getItemStorage().getAmountAsInt(0))
+            return;
+
         set(true);
         // update();
 
@@ -156,7 +159,7 @@ public class QuernBE extends SynchedBlockEntity implements ItemStorageBlock, NoG
 
         try (var tx = Transaction.openRoot()) {
             dropInWorldResult(recipe.getOutput().create(), level, getBlockPos());
-            storage.extract(0, storage.getResource(0), 1, tx);
+            storage.extract(0, storage.getResource(0), recipe.getInput().count(), tx);
             tx.commit();
         }
 
