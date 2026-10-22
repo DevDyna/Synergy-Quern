@@ -20,6 +20,7 @@ public class zBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> zTiles = DeferredRegister
             .create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MODULE_ID);
 
-    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<QuernBE>> QUERN = RegistryUtils.createBlockEntity("quern",zTiles, QuernBE::new, zBlocks.QUERN);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<QuernBE>> QUERN = RegistryUtils
+            .createBlockEntity("quern", zTiles, QuernBE::new, zBlocks.QUERN);
 
 }
