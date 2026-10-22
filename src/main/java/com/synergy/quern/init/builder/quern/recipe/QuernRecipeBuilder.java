@@ -20,47 +20,47 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
-public class MillingBuilder extends BaseRecipeBuilder
-        implements ItemAttach.Input.ItemCounted<MillingBuilder>,
-        ItemAttach.Output.SimpleOutputItem<MillingBuilder> {
+public class QuernRecipeBuilder extends BaseRecipeBuilder
+        implements ItemAttach.Input.ItemCounted<QuernRecipeBuilder>,
+        ItemAttach.Output.SimpleOutputItem<QuernRecipeBuilder> {
 
     private SizedIngredient input;
     private int tick;
     private Optional<Double> speed;
     private ItemStackTemplate output;
 
-    private MillingBuilder(HolderLookup.Provider p) {
+    private QuernRecipeBuilder(HolderLookup.Provider p) {
         super(p);
         this.tick = 20;
         this.speed = Optional.empty();
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
     }
 
-    public static MillingBuilder of(HolderLookup.Provider p) {
-        return new MillingBuilder(p);
+    public static QuernRecipeBuilder of(HolderLookup.Provider p) {
+        return new QuernRecipeBuilder(p);
     }
 
-    public MillingBuilder input(SizedIngredient input) {
+    public QuernRecipeBuilder input(SizedIngredient input) {
         this.input = input;
         return this;
     }
 
-    public MillingBuilder output(ItemStackTemplate output) {
+    public QuernRecipeBuilder output(ItemStackTemplate output) {
         this.output = output;
         return this;
     }
 
-    public MillingBuilder delay(int tick) {
+    public QuernRecipeBuilder delay(int tick) {
         this.tick = tick;
         return this;
     }
 
-    public MillingBuilder speed(double speed) {
+    public QuernRecipeBuilder speed(double speed) {
         this.speed = Optional.ofNullable(speed);
         return this;
     }
 
-    public MillingBuilder unlockedBy() {
+    public QuernRecipeBuilder unlockedBy() {
         return unlockedBy(MODULE_ID, InventoryChangeTrigger.TriggerInstance
                 .hasItems(input.ingredient().getValues().stream()
                         .map(Holder::getKey)
@@ -69,18 +69,18 @@ public class MillingBuilder extends BaseRecipeBuilder
                         .toArray(Item[]::new)));
     }
 
-    public MillingBuilder unlockedBy(String name, Criterion<?> criterion) {
+    public QuernRecipeBuilder unlockedBy(String name, Criterion<?> criterion) {
         this.criteria.put(name, criterion);
         return this;
     }
 
     @Override
     public Recipe<?> createRecipe() {
-        return new MillingRecipe(input, tick, speed, output);
+        return new QuernRecipe(input, tick, speed, output);
     }
 
     @Override
-    public MillingBuilder getBuilder() {
+    public QuernRecipeBuilder getBuilder() {
         return this;
     }
 

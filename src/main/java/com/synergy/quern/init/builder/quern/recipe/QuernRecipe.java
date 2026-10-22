@@ -28,14 +28,14 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
 @SuppressWarnings("null")
-public class MillingRecipe extends BaseRecipeType<ItemInput.simple> {
+public class QuernRecipe extends BaseRecipeType<ItemInput.simple> {
 
     private final SizedIngredient input;
     private final int time;
     private final Optional<Double> speed;
     private final ItemStackTemplate output;
 
-    public MillingRecipe(SizedIngredient input,
+    public QuernRecipe(SizedIngredient input,
             int time, Optional<Double> speed, ItemStackTemplate output) {
         this.input = input;
         this.time = time;
@@ -43,9 +43,9 @@ public class MillingRecipe extends BaseRecipeType<ItemInput.simple> {
         this.speed = speed;
     }
 
-    public static MillingRecipe of(SizedIngredient input,
+    public static QuernRecipe of(SizedIngredient input,
             int time, Optional<Double> speed, ItemStackTemplate output) {
-        return new MillingRecipe(input, time, speed, output);
+        return new QuernRecipe(input, time, speed, output);
     }
 
     public boolean matches(ItemInput.simple r, Level l) {
@@ -97,23 +97,23 @@ public class MillingRecipe extends BaseRecipeType<ItemInput.simple> {
         return zBlocks.QUERN.get().asItem();
     }
 
-    public static final RecipeSerializer<MillingRecipe> serializer() {
+    public static final RecipeSerializer<QuernRecipe> serializer() {
         return new RecipeSerializer<>(CODEC, STREAM_CODEC);
     }
 
-    public static final MapCodec<MillingRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            SizedIngredient.NESTED_CODEC.fieldOf("input").forGetter(MillingRecipe::getInput),
-            Codec.intRange(1, Integer.MAX_VALUE).fieldOf("ticks").forGetter(MillingRecipe::getTime),
-            Codec.doubleRange(1, Integer.MAX_VALUE).optionalFieldOf("min_speed_required").forGetter(MillingRecipe::getSpeed),
-            ItemStackTemplate.CODEC.fieldOf("output").forGetter(MillingRecipe::getOutput))
-            .apply(inst, MillingRecipe::new));
+    public static final MapCodec<QuernRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            SizedIngredient.NESTED_CODEC.fieldOf("input").forGetter(QuernRecipe::getInput),
+            Codec.intRange(1, Integer.MAX_VALUE).fieldOf("ticks").forGetter(QuernRecipe::getTime),
+            Codec.doubleRange(1, Integer.MAX_VALUE).optionalFieldOf("min_speed_required").forGetter(QuernRecipe::getSpeed),
+            ItemStackTemplate.CODEC.fieldOf("output").forGetter(QuernRecipe::getOutput))
+            .apply(inst, QuernRecipe::new));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, MillingRecipe> STREAM_CODEC = StreamCodec
+    public static final StreamCodec<RegistryFriendlyByteBuf, QuernRecipe> STREAM_CODEC = StreamCodec
             .composite(
-                    SizedIngredient.STREAM_CODEC, MillingRecipe::getInput,
-                    ByteBufCodecs.INT, MillingRecipe::getTime,
-                    ByteBufCodecs.optional(ByteBufCodecs.DOUBLE), MillingRecipe::getSpeed,
-                    ItemStackTemplate.STREAM_CODEC, MillingRecipe::getOutput,
-                    MillingRecipe::new);
+                    SizedIngredient.STREAM_CODEC, QuernRecipe::getInput,
+                    ByteBufCodecs.INT, QuernRecipe::getTime,
+                    ByteBufCodecs.optional(ByteBufCodecs.DOUBLE), QuernRecipe::getSpeed,
+                    ItemStackTemplate.STREAM_CODEC, QuernRecipe::getOutput,
+                    QuernRecipe::new);
 
 }

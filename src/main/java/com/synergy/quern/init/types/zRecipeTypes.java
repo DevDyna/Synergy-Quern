@@ -3,7 +3,7 @@ package com.synergy.quern.init.types;
 import static com.synergy.quern.Main.MODULE_ID;
 
 import com.synergy.quern.api.RecipeRegister;
-import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
+import com.synergy.quern.init.builder.quern.recipe.QuernRecipe;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -22,7 +22,7 @@ public class zRecipeTypes {
             .create(Registries.RECIPE_SERIALIZER, MODULE_ID);
     public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, MODULE_ID);
 
-    public static final RecipeRegister<MillingRecipe> QUERN = RecipeRegister.of("milling",
-            () -> MillingRecipe.serializer());
+    public static final RecipeRegister<QuernRecipe> QUERN = RecipeRegister.of("milling",
+            () -> QuernRecipe.serializer());
 
 }

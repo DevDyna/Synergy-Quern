@@ -9,7 +9,7 @@ import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
 import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 import com.synergy.quern.Config;
-import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
+import com.synergy.quern.init.builder.quern.recipe.QuernRecipe;
 import com.synergy.quern.init.types.zBlockEntities;
 import com.synergy.quern.init.types.zRecipeTypes;
 
@@ -124,7 +124,7 @@ public class QuernBE extends SynchedBlockEntity implements ItemStorageBlock, NoG
             return;
         }
 
-        Optional<RecipeHolder<MillingRecipe>> r = level.getServer().getRecipeManager()
+        Optional<RecipeHolder<QuernRecipe>> r = level.getServer().getRecipeManager()
                 .getRecipeFor(zRecipeTypes.QUERN.getType(),
                         ItemInput.simple.of(item.toStack()), level);
 

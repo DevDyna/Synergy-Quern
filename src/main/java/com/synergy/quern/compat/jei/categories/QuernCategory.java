@@ -6,7 +6,7 @@ import com.devdyna.cakesticklib.api.compat.jei.BaseRecipeCategory;
 import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.ColorUtils;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
+import com.synergy.quern.init.builder.quern.recipe.QuernRecipe;
 import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zRecipeTypes;
 
@@ -21,17 +21,17 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.ItemLike;
 
-public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
+public class QuernCategory extends BaseRecipeCategory<QuernRecipe> {
 
     public QuernCategory(IGuiHelper helper) {
         super(helper);
     }
 
-    public static final IRecipeType<RecipeHolder<MillingRecipe>> TYPE = IRecipeType
+    public static final IRecipeType<RecipeHolder<QuernRecipe>> TYPE = IRecipeType
             .create(zRecipeTypes.QUERN.getType());
 
     @Override
-    public IRecipeType<RecipeHolder<MillingRecipe>> getRecipeType() {
+    public IRecipeType<RecipeHolder<QuernRecipe>> getRecipeType() {
         return TYPE;
     }
 
@@ -56,13 +56,13 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, MillingRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, QuernRecipe recipe, IFocusGroup focuses) {
         builder.addInputSlot(1, 1).addItemStacks(x.getItemStacksFromIngredient(recipe.getInput()));
         builder.addOutputSlot(78, 25).add(recipe.getOutput());
     }
 
     @Override
-    public void draw(MillingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics,
+    public void draw(QuernRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics,
             double mouseX, double mouseY) {
         super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
 
@@ -80,22 +80,22 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     }
 
     @Override
-    public int tickColor(MillingRecipe recipe) {
+    public int tickColor(QuernRecipe recipe) {
         return ColorUtils.WHITE.WHITE.getRGB();
     }
 
     @Override
-    public boolean enableTimerRender(MillingRecipe recipe) {
+    public boolean enableTimerRender(QuernRecipe recipe) {
         return true;
     }
 
     @Override
-    public int tickValue(MillingRecipe recipe) {
+    public int tickValue(QuernRecipe recipe) {
         return recipe.getTime();
     }
 
     @Override
-    public Size tickPos(MillingRecipe recipe) {
+    public Size tickPos(QuernRecipe recipe) {
         return Size.of(58, 4);
     }
 
