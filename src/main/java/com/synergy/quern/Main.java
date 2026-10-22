@@ -15,6 +15,7 @@ public class Main {
 
         Material.register(bus);
         GameEvents.build(bus, c);
+        Config.register(c);
     }
 
 }

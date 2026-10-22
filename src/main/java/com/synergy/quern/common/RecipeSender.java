@@ -10,7 +10,7 @@ public class RecipeSender {
     @SubscribeEvent
     public static void onDatapackSync(OnDatapackSyncEvent event) {
         if (ModList.get().isLoaded("jei"))
-            event.sendRecipes(zRecipeTypes.QUERN.getType());
+            event.sendRecipes(zRecipeTypes.QUERN_MILLING.getType());
 
     }
 }

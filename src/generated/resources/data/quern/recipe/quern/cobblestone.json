@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "minecraft:stone",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "minecraft:stone"
+  },
+  "output": {
     "id": "minecraft:cobblestone"
-  }
+  },
+  "ticks": 20
 }

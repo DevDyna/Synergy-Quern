@@ -1,6 +1,12 @@
 {
   "block.quern.quern": "Quern",
+  "config.jade.plugin_quern.quern_speed": "Quern Speed Info",
   "quern.advancement.branch.quern": "It spin!",
   "quern.advancement.branch.quern.desc": "Craft a quern to process resources into dusts",
-  "quern.jei.quern": "Milling Recipes"
+  "quern.configuration.disable_item_render": "Disable Item Renderer",
+  "quern.configuration.max_speed": "Max Quern Speed",
+  "quern.configuration.speed_increaser": "Quern Speed Increaser",
+  "quern.jade.quern.speed": "Current Speed : %s",
+  "quern.jei.quern.speed": "Min Speed : %s",
+  "quern.jei.quern.title": "Milling Recipes"
 }

@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:gems/emerald",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "#c:gems/emerald"
+  },
+  "output": {
     "id": "cakesticklib:emerald_dust"
-  }
+  },
+  "ticks": 20
 }

@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "minecraft:deepslate",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "minecraft:deepslate"
+  },
+  "output": {
     "id": "minecraft:cobbled_deepslate"
-  }
+  },
+  "ticks": 20
 }

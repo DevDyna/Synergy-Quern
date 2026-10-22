@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "minecraft:prismarine_shard",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "minecraft:prismarine_shard"
+  },
+  "output": {
     "id": "minecraft:prismarine_crystals"
-  }
+  },
+  "ticks": 20
 }

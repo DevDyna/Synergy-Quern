@@ -1,8 +1,11 @@
 {
   "type": "quern:milling",
-  "frequence": 20,
-  "ingredient": "#c:ingots/iron",
-  "result": {
+  "input": {
+    "count": 1,
+    "ingredient": "#c:ingots/iron"
+  },
+  "output": {
     "id": "cakesticklib:iron_dust"
-  }
+  },
+  "ticks": 20
 }
