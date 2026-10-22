@@ -59,18 +59,21 @@ public class DataRecipe extends RecipeProvider {
 
                 MillingBuilder.of(registries)
                                 .input(Tags.Items.RAW_MATERIALS_COPPER)
+                                .speed(9f)
                                 .output(LibItems.COPPER_DUST.get(), 2)
                                 .unlockedBy("has_raw_copper", has(Tags.Items.RAW_MATERIALS_COPPER))
                                 .save(output, "_from_raw");
 
                 MillingBuilder.of(registries)
                                 .input(Tags.Items.RAW_MATERIALS_GOLD)
+                                .speed(9f)
                                 .output(LibItems.GOLD_DUST.get(), 2)
                                 .unlockedBy("has_raw_gold", has(Tags.Items.RAW_MATERIALS_GOLD))
                                 .save(output, "_from_raw");
 
                 MillingBuilder.of(registries)
                                 .input(Tags.Items.RAW_MATERIALS_IRON)
+                                .speed(9f)
                                 .output(LibItems.IRON_DUST.get(), 2)
                                 .unlockedBy("has_raw_iron", has(Tags.Items.RAW_MATERIALS_IRON))
                                 .save(output, "_from_raw");

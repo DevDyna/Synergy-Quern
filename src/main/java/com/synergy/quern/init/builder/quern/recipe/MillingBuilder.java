@@ -3,6 +3,7 @@ package com.synergy.quern.init.builder.quern.recipe;
 import static com.synergy.quern.Main.MODULE_ID;
 
 import java.util.LinkedHashMap;
+import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
 import com.devdyna.cakesticklib.api.utils.x;
@@ -16,20 +17,22 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
 public class MillingBuilder extends BaseRecipeBuilder
-        implements ItemAttach.Input.NoItemCount<MillingBuilder>,
+        implements ItemAttach.Input.ItemCounted<MillingBuilder>,
         ItemAttach.Output.SimpleOutputItem<MillingBuilder> {
 
-    private Ingredient input;
+    private SizedIngredient input;
     private int tick;
+    private Optional<Double> speed;
     private ItemStackTemplate output;
 
     private MillingBuilder(HolderLookup.Provider p) {
         super(p);
         this.tick = 20;
+        this.speed = Optional.empty();
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
     }
 
@@ -37,8 +40,7 @@ public class MillingBuilder extends BaseRecipeBuilder
         return new MillingBuilder(p);
     }
 
-    @Deprecated
-    public MillingBuilder input(Ingredient input) {
+    public MillingBuilder input(SizedIngredient input) {
         this.input = input;
         return this;
     }
@@ -53,9 +55,14 @@ public class MillingBuilder extends BaseRecipeBuilder
         return this;
     }
 
+    public MillingBuilder speed(double speed) {
+        this.speed = Optional.ofNullable(speed);
+        return this;
+    }
+
     public MillingBuilder unlockedBy() {
         return unlockedBy(MODULE_ID, InventoryChangeTrigger.TriggerInstance
-                .hasItems(input.getValues().stream()
+                .hasItems(input.ingredient().getValues().stream()
                         .map(Holder::getKey)
                         .map(ResourceKey::identifier)
                         .map(BuiltInRegistries.ITEM::getValue)
@@ -69,7 +76,7 @@ public class MillingBuilder extends BaseRecipeBuilder
 
     @Override
     public Recipe<?> createRecipe() {
-        return new MillingRecipe(input, output, tick);
+        return new MillingRecipe(input, tick, speed, output);
     }
 
     @Override

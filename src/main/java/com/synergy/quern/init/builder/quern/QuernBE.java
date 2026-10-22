@@ -2,43 +2,36 @@ package com.synergy.quern.init.builder.quern;
 
 import java.util.Optional;
 
+import com.devdyna.cakesticklib.api.RandomUtil;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
-import com.devdyna.cakesticklib.api.utils.x;
+import com.devdyna.cakesticklib.api.primitive.Ticker;
+import com.devdyna.cakesticklib.api.recipe.recipeInput.ItemInput;
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
-import com.synergy.quern.api.ItemInput;
-
+import com.synergy.quern.Config;
 import com.synergy.quern.init.builder.quern.recipe.MillingRecipe;
 import com.synergy.quern.init.types.zBlockEntities;
 import com.synergy.quern.init.types.zRecipeTypes;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
-import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
-public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStorage {
+public class QuernBE extends SynchedBlockEntity implements ItemStorageBlock, NoGuiStorage, TickerDelay, Tickable {
 
-    private float rotation = 0f;
-    private float speed = 0f;
-
-    private int minDelay;
-
-    public QuernBE(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
-        super(type, pos, blockState);
+    public QuernBE(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
     }
 
-    public QuernBE(BlockPos pos, BlockState blockState) {
-        this(zBlockEntities.QUERN.get(), pos, blockState);
+    public QuernBE(BlockPos pos, BlockState state) {
+        this(zBlockEntities.QUERN.get(), pos, state);
     }
 
     @Override
@@ -51,133 +44,148 @@ public class QuernBE extends BlockEntity implements ItemStorageBlock, NoGuiStora
         return getData(LibHandlers.ITEM_STORAGE);
     }
 
-    @Override
-    protected void saveAdditional(ValueOutput output) {
-        getItemStorage().serialize(output);
-        super.saveAdditional(output);
-    }
+    // @Override
+    // protected void saveAdditional(ValueOutput output) {
+    // getItemStorage().serialize(output);
+    // super.saveAdditional(output);
+    // }
 
-    @Override
-    protected void loadAdditional(ValueInput input) {
-        getItemStorage().deserialize(input);
-        super.loadAdditional(input);
-    }
+    // @Override
+    // protected void loadAdditional(ValueInput input) {
+    // getItemStorage().deserialize(input);
+    // super.loadAdditional(input);
+    // }
 
     public ItemStack insertItem(ItemStack stack) {
-        long inserted = 0;
-
-        try (Transaction tx = Transaction.openRoot()) {
-            inserted = getItemStorage().insert(0, ItemResource.of(stack), stack.getCount(), tx);
-            tx.commit();
-        } catch (Exception e) {
-        }
-
-        return x.item(stack.getItem(), stack.getCount() - (int) inserted);
+        return simpleInsertItem(stack, 0);
     }
 
     public ItemStack extractItem() {
-        var resource = getItemStorage().getResource(0);
-
-        if (resource.isEmpty())
-            return ItemStack.EMPTY;
-
-        try (Transaction tx = Transaction.openRoot()) {
-
-            long extracted = getItemStorage()
-                    .extract(0, resource, getItemStorage().getAmountAsInt(0), tx);
-            tx.commit();
-
-            return resource.toStack((int) extracted);
-        }
+        return simpleExtractItemByIndex(0);
     }
 
-    public float getRotation(float partialTicks) {
-        return rotation + speed * partialTicks;
+    private double rotation = 0f;
+    private double speed = 0f;
+
+    private Ticker ticker = null;
+
+    public double getRotation(float t) {
+        return rotation + speed * t;
     }
 
-    public void tickServer() {
-
-        if (level == null)
-            return;
-
-        var random = level.getRandom();
-
-        if (getBlockState().getValue(BlockStateProperties.ENABLED)) {
-            minDelay++;
-        } else {
-            minDelay = 0;
-        }
-
-        var slot = getItemStorage();
-
-        if (slot == null)
-            return;
-
-        var item = slot.getResource(0);
-
-        if (!item.isEmpty()) {
-
-            try (Transaction tx = Transaction.openRoot()) {
-
-                Optional<RecipeHolder<MillingRecipe>> recipe = level.getServer().getRecipeManager()
-                        .getRecipeFor(zRecipeTypes.QUERN.getType(),
-                                new ItemInput(item.toStack()), level);
-
-                if (recipe.isEmpty())
-                    return;
-
-                level.setBlockAndUpdate(getBlockPos(),
-                        getBlockState().setValue(BlockStateProperties.ENABLED, true));
-
-                if (random.nextInt(100) <= 70) {
-
-                    if (level.getGameTime() % 15 == 0) {
-                        level.playSound(null, getBlockPos(),
-                                SoundEvents.GRINDSTONE_USE,
-                                SoundSource.BLOCKS, 0.25F * (random.nextInt(100) <= 50 ? 1f : 0.75f), 1);
-                    }
-
-                    if (minDelay >= recipe.get().value().getTime()
-                            && minDelay % recipe.get().value().getTime() == 0) {
-                        var output = recipe.get().value().getOutput();
-                        dropInWorldResult(output.create(), level, getBlockPos());
-
-                        slot.extract(0, slot.getResource(0), 1, tx);
-                        tx.commit();
-
-                        level.playSound(null, getBlockPos(),
-                                SoundEvents.ITEM_FRAME_REMOVE_ITEM,
-                                SoundSource.BLOCKS, 0.5F * (random.nextInt(100) <= 50 ? 1f : 0.75f), 1);
-                        setChanged(level, getBlockPos(), getBlockState());
-                    }
-                }
-            } catch (Exception e) {
-
-            }
-        } else {
-            level.setBlockAndUpdate(getBlockPos(),
-                    getBlockState().setValue(BlockStateProperties.ENABLED, false));
-        }
-
+    public double getSpeed() {
+        return speed;
     }
 
-    public void tickClient() {
+    @Override
+    public void tickBoth() {
 
-        if (getBlockState().getValue(BlockStateProperties.ENABLED)) {
-            if (speed < 10f)// max speed
-                speed += 0.1f;
+        if (isActive()) {
+            if (speed <= Config.MAX_QUERN_SPEED.get())
+                speed = Math.min(Config.MAX_QUERN_SPEED.get(),
+                        speed + Config.QUERN_SPEED_INCREASER.get());
         } else {
-            if (speed > 0) {
-                speed -= 0.1f;
+            if (speed > 0)
+                speed = Math.max(0, speed - Config.QUERN_SPEED_INCREASER.get());
 
-            }
             if (speed < 0)
                 speed = 0;
         }
 
         rotation += speed;
+
         if (rotation >= 360f)
             rotation -= 360f;
+
+        // if (!level.isClientSide())
+        if (ticker != null)
+            if (RandomUtil.chance(level, 25))
+                level.addParticle(ParticleTypes.CRIT,
+                        getBlockPos().getX() + 0.5f, getBlockPos().getY() + 0.5f, getBlockPos().getZ() + 0.5f,
+                        RandomUtil.between(level, -0.25f, 0.25f),
+                        RandomUtil.between(level, -0.25f, 0.25f),
+                        RandomUtil.between(level, -0.25f, 0.25f));
+    }
+
+    @Override
+    public void tickServer() {
+
+        var storage = getItemStorage();
+
+        if (storage == null)
+            return;
+
+        var item = storage.getResource(0);
+
+        if (item.isEmpty()) {
+            set(false);
+            ticker = null;
+            // update();
+            return;
+        }
+
+        Optional<RecipeHolder<MillingRecipe>> r = level.getServer().getRecipeManager()
+                .getRecipeFor(zRecipeTypes.QUERN.getType(),
+                        ItemInput.simple.of(item.toStack()), level);
+
+        if (r.isEmpty())
+            return;
+
+        var recipe = r.get().value();
+
+        set(true);
+        // update();
+
+        if (RandomUtil.chance(level, 70))
+            if (level.getGameTime() % 15 == 0)
+                level.playSound(null, getBlockPos(),
+                        SoundEvents.GRINDSTONE_USE,
+                        SoundSource.BLOCKS, 0.25F
+                                * (RandomUtil.rnd50(level) ? 1f : 0.75f),
+                        1);
+
+        if (!recipe.getSpeed().isEmpty())
+            if (speed < recipe.getSpeed().get())
+                return;
+
+        if (ticker == null)
+            ticker = Ticker.of(recipe.getTime());
+
+        if (!ticker.commit())
+            return;
+
+        try (var tx = Transaction.openRoot()) {
+            dropInWorldResult(recipe.getOutput().create(), level, getBlockPos());
+            storage.extract(0, storage.getResource(0), 1, tx);
+            tx.commit();
+        }
+
+        level.playSound(null, getBlockPos(),
+                SoundEvents.ITEM_FRAME_REMOVE_ITEM,
+                SoundSource.BLOCKS, 0.5F * (RandomUtil.rnd50(level) ? 1f : 0.75f), 1);
+
+        update();
+
+    }
+
+    public void set(boolean v) {
+        if (isActive() != v)
+            level.setBlockAndUpdate(getBlockPos(),
+                    getBlockState().setValue(QuernBlock.ENABLED, v));
+    }
+
+    public Boolean isActive() {
+        return getBlockState().getValue(QuernBlock.ENABLED);
+    }
+
+    @Override
+    public TimerStyle getStyle() {
+        return TimerStyle.PROGRESS_BAR;
+    }
+
+    @Override
+    public Ticker getTicker() {
+        return ticker;
     }
 
 }

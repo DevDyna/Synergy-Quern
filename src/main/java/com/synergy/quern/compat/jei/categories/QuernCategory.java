@@ -11,10 +11,12 @@ import com.synergy.quern.init.types.zBlocks;
 import com.synergy.quern.init.types.zRecipeTypes;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
-import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.types.IRecipeType;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.ItemLike;
@@ -35,7 +37,7 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
 
     @Override
     public String getTraslationKey() {
-        return MODULE_ID + ".jei.quern";
+        return MODULE_ID + ".jei.quern.title";
     }
 
     @Override
@@ -45,26 +47,45 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
 
     @Override
     public Size setXY() {
-        return Size.of(75, 20);
+        return Size.of(96, 52);
     }
 
     @Override
     public Identifier setBackGround() {
-        return x.rl(MODULE_ID, "textures/gui/jei/simple.png");
+        return x.rl(MODULE_ID, "textures/gui/jei/quern.png");
     }
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, MillingRecipe recipe, IFocusGroup focuses) {
+        builder.addInputSlot(1, 1).addItemStacks(x.getItemStacksFromIngredient(recipe.getInput()));
+        builder.addOutputSlot(78, 25).add(recipe.getOutput());
+    }
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
-                .add(recipe.getInput());
+    @Override
+    public void draw(MillingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics,
+            double mouseX, double mouseY) {
+        super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 57, 2)
-                .add(recipe.getOutput().create());
+        guiGraphics.text(this.font,
+                Component.translatable(MODULE_ID + ".jei.quern.speed",
+                        "" + (recipe.getSpeed().isPresent()
+                                ? ((int) (recipe.getSpeed().get() * 100.0)) / 100.0
+                                : 0.1)),
+                0, 45, ColorUtils.WHITE.WHITE.getRGB());
     }
 
     @Override
     public boolean enableTimerRender() {
+        return true;
+    }
+
+    @Override
+    public int tickColor(MillingRecipe recipe) {
+        return ColorUtils.WHITE.WHITE.getRGB();
+    }
+
+    @Override
+    public boolean enableTimerRender(MillingRecipe recipe) {
         return true;
     }
 
@@ -74,8 +95,8 @@ public class QuernCategory extends BaseRecipeCategory<MillingRecipe> {
     }
 
     @Override
-    public int tickColor(MillingRecipe recipe) {
-      return ColorUtils.WHITE.WHITE.getRGB();
-   }
+    public Size tickPos(MillingRecipe recipe) {
+        return Size.of(58, 4);
+    }
 
 }
