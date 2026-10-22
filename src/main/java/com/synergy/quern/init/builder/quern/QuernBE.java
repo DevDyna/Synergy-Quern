@@ -125,7 +125,7 @@ public class QuernBE extends SynchedBlockEntity implements ItemStorageBlock, NoG
         }
 
         Optional<RecipeHolder<QuernRecipe>> r = level.getServer().getRecipeManager()
-                .getRecipeFor(zRecipeTypes.QUERN.getType(),
+                .getRecipeFor(zRecipeTypes.QUERN_MILLING.getType(),
                         ItemInput.simple.of(item.toStack()), level);
 
         if (r.isEmpty())

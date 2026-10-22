@@ -22,7 +22,7 @@ public class zRecipeTypes {
             .create(Registries.RECIPE_SERIALIZER, MODULE_ID);
     public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, MODULE_ID);
 
-    public static final RecipeRegister<QuernRecipe> QUERN = RecipeRegister.of("milling",
+    public static final RecipeRegister<QuernRecipe> QUERN_MILLING = RecipeRegister.of("milling",
             () -> QuernRecipe.serializer());
 
 }

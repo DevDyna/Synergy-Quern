@@ -28,7 +28,7 @@ public class QuernCategory extends BaseRecipeCategory<QuernRecipe> {
     }
 
     public static final IRecipeType<RecipeHolder<QuernRecipe>> TYPE = IRecipeType
-            .create(zRecipeTypes.QUERN.getType());
+            .create(zRecipeTypes.QUERN_MILLING.getType());
 
     @Override
     public IRecipeType<RecipeHolder<QuernRecipe>> getRecipeType() {

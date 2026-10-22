@@ -79,12 +79,12 @@ public class QuernRecipe extends BaseRecipeType<ItemInput.simple> {
 
     @Override
     public RecipeType<? extends Recipe<ItemInput.simple>> getType() {
-        return zRecipeTypes.QUERN.getType();
+        return zRecipeTypes.QUERN_MILLING.getType();
     }
 
     @Override
     public RecipeSerializer<? extends Recipe<ItemInput.simple>> getSerializer() {
-        return zRecipeTypes.QUERN.getSerializer();
+        return zRecipeTypes.QUERN_MILLING.getSerializer();
     }
 
     @Override

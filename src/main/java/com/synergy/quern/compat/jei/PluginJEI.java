@@ -52,7 +52,7 @@ public class PluginJEI implements IModPlugin {
     public void registerRecipes(IRecipeRegistration r) {
 
         r.addRecipes(QuernCategory.TYPE,
-                getRecipes(zRecipeTypes.QUERN.getType()));
+                getRecipes(zRecipeTypes.QUERN_MILLING.getType()));
 
     }
 
